@@ -12,5 +12,9 @@ Rodar o projeto:
 
 ``` npm run dev```
 
+Acessar em http://localhost:5173
+
+
+
 
 
