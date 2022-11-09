@@ -1,1 +1,20 @@
-# api-study
+# Como rodar o projeto
+
+Baixar o repositório: 
+
+``` git clone git@github.com:abimaelneto/api-study.git ```
+
+Instalar as dependências:
+
+``` npm install ```
+
+Rodar o projeto:
+
+``` npm run dev```
+
+Acessar em http://localhost:5173
+
+
+
+
+
