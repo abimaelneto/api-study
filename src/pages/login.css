@@ -1,10 +1,9 @@
 .containerlogin {
-  background-color: rgb(163, 147, 147);
   height: 100vh;
   width: 100vw;
 }
 
-/* body {
+body {
   background: rgb(2, 50, 4);
   background: linear-gradient(
     265deg,
@@ -12,4 +11,285 @@
     rgba(0, 7, 0, 1) 95%,
     rgba(0, 4, 0, 1) 100%
   );
+}
+
+/* body {
+  background: #020513ee;
+  font-family: "Montserrat", sans-serif;
 } */
+
+.container-login {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 10rem;
+  height: 25rem;
+
+  cursor: pointer;
+  color: black;
+}
+.div-lubi:hover {
+  transition: 1s;
+  background-image: linear-gradient(225deg, #818dd8 5%, #01050f 100%);
+  transform: translateY(-1rem);
+}
+
+.wrappr-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px 40px;
+  height: 21.7rem;
+  border-radius: 4px;
+  width: 39.7rem;
+  z-index: 10;
+  cursor: pointer;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    120deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(4, 4, 65, 1) 89%,
+    rgba(6, 6, 105, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.div-lubi::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -0%;
+  width: 390px;
+  height: 450px;
+  background: linear-gradient(0deg, transparent, yellow, yellow);
+  transform-origin: bottom right;
+  animation: animate 6s linear infinite;
+}
+
+.div-lubi::after {
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -50%;
+  left: -0%;
+  width: 390px;
+  height: 450px;
+  background: linear-gradient(0deg, transparent, #43f3ff, #45f3ff);
+  transform-origin: bottom right;
+  animation: animate 6s linear infinite;
+  animation-delay: -3s;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.div-lubi {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 27rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  width: 45rem;
+  margin: 2rem auto;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.wrappr-login p {
+  display: flex;
+  margin-top: 10px;
+  color: #00a8fb;
+  font-size: 12pt;
+}
+
+.logarparalogin {
+  display: block;
+  font-family: sans-serif;
+  font-size: 1rem;
+  padding: 0.6rem 2rem;
+  border: none;
+  background-color: #ffb801;
+  border-radius: 4px;
+  color: #402d00;
+  cursor: pointer;
+}
+button:hover {
+  transition: 2s;
+
+  background-color: #95eb0a;
+}
+
+.mybotton {
+  display: flex;
+
+  justify-content: space-around;
+  top: 2rem;
+  position: relative;
+  text-align: center;
+  height: 60px;
+  width: 100%;
+  align-items: center;
+}
+
+.digite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 1.3rem;
+  text-align: center;
+  color: #00a8fb;
+  font-family: "Special Elite", monospace;
+}
+
+.input-wrappre {
+  position: relative;
+  width: 100%;
+  margin-top: 2em;
+}
+.input-wrappre input {
+  position: relative;
+  width: 100%;
+  padding: 20px 10px 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  letter-spacing: 0.05em;
+  color: black;
+  z-index: 10;
+}
+.input-wrappre span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 20px 10px 10px;
+  font-size: 0.9em;
+  transition: 0.7s;
+  color: white;
+}
+
+.input-wrappre input:valid ~ span,
+.input-wrappre input:focus ~ span {
+  color: #00a8fb;
+  font-family: "Special Elite", monospace;
+  transform: translateX(-10px) translateY(-35px);
+  font-size: 0.75em;
+}
+.input-wrappre i {
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 100%;
+  height: 2px;
+  border-radius: 4px;
+  transition: 0.5s;
+  pointer-events: none;
+  background-color: #43f3ff;
+  z-index: 9;
+}
+
+.input-wrappre input:valid ~ i,
+.input-wrappre input:focus ~ i {
+  height: 45px;
+}
+
+.cadastro {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 50px;
+  width: 25%;
+  color: white;
+
+  padding: 20px;
+  font-size: 24px;
+  line-height: 24px;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: all 400ms ease;
+}
+
+.cadastro {
+  transform-style: preserve-3d;
+  background-color: #2e332e;
+}
+.cadastro::after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -100%;
+  left: 0px;
+  height: 50px;
+  width: 100%;
+  padding: 20px;
+  position: absolute;
+  background: #ffb801;
+  border-radius: 10px;
+  content: "Vamoslá?";
+  transform-origin: left bottom;
+  box-sizing: border-box;
+  transform: rotateX(90deg);
+}
+.cadastro:hover {
+  transform-origin: center bottom;
+  transition: 00.5s;
+  transform: rotateX(-90deg) translateY(100%);
+}
+
+.logiAnimado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border-radius: 10px;
+
+  position: relative;
+}
+.logiAnimado:hover {
+  transform: translateX(20px);
+  transition: 0.7s;
+}
+
+.logiAnimado::after,
+.logiAnimado::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 5px;
+}
+
+.logiAnimado::before {
+  transform: scaleY(0);
+  border-right: 2px solid #09f315;
+  border-left: 2px solid #f51d09;
+}
+.logiAnimado::after {
+  transform: scaleX(0);
+  border-top: 2px solid #fbbc05;
+  border-bottom: 2px solid #4285f4;
+}
+.logiAnimado:hover:before {
+  transform: scaleX(1);
+}
+.logiAnimado:hover::after {
+  transform: scaleX(1);
+}
