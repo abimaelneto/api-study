@@ -1,31 +1,13 @@
-.containerlogin {
-  height: 100vh;
-  width: 100vw;
-}
-
-body {
-  background: rgb(2, 50, 4);
-  background: linear-gradient(
-    265deg,
-    rgba(2, 50, 4, 1) 0%,
-    rgba(0, 7, 0, 1) 95%,
-    rgba(0, 4, 0, 1) 100%
-  );
-}
-
-/* body {
-  background: #020513ee;
-  font-family: "Montserrat", sans-serif;
-} */
-
 .container-login {
   display: flex;
+  align-items: center;
   justify-content: center;
+
   width: 100%;
   margin-bottom: 10rem;
+  margin-left: 50px;
   height: 25rem;
 
-  cursor: pointer;
   color: black;
 }
 .div-lubi:hover {
@@ -36,32 +18,23 @@ body {
 
 .wrappr-login {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
   padding: 40px 40px;
-  height: 21.7rem;
+  height: 15.3rem;
+  background-image: linear-gradient(225deg, #3043bd 5%, #01050f 100%);
   border-radius: 4px;
-  width: 39.7rem;
+  width: 34.8rem;
   z-index: 10;
   cursor: pointer;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    120deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(4, 4, 65, 1) 89%,
-    rgba(6, 6, 105, 1) 100%,
-    rgba(0, 212, 255, 1) 100%
-  );
 }
 
 .div-lubi::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -0%;
+  top: -90%;
+  left: -10%;
   width: 390px;
-  height: 450px;
+  height: 440px;
   background: linear-gradient(0deg, transparent, yellow, yellow);
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
@@ -69,14 +42,11 @@ body {
 
 .div-lubi::after {
   content: "";
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
-  top: -50%;
-  left: -0%;
+  top: -80%;
+  left: -10%;
   width: 390px;
-  height: 450px;
+  height: 440px;
   background: linear-gradient(0deg, transparent, #43f3ff, #45f3ff);
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
@@ -97,10 +67,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 27rem;
+  height: 20.6rem;
   border-radius: 4px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-  width: 45rem;
+  width: 40rem;
   margin: 2rem auto;
   cursor: pointer;
   overflow: hidden;
@@ -113,44 +83,21 @@ body {
   font-size: 12pt;
 }
 
-.logarparalogin {
-  display: block;
-  font-family: sans-serif;
-  font-size: 1rem;
-  padding: 0.6rem 2rem;
-  border: none;
-  background-color: #ffb801;
-  border-radius: 4px;
-  color: #402d00;
-  cursor: pointer;
-}
-button:hover {
-  transition: 2s;
-
-  background-color: #95eb0a;
-}
-
-.mybotton {
-  display: flex;
-
-  justify-content: space-around;
-  top: 2rem;
-  position: relative;
-  text-align: center;
-  height: 60px;
-  width: 100%;
-  align-items: center;
-}
-
 .digite {
   display: flex;
+
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 20rem;
   height: 1.3rem;
   text-align: center;
-  color: #00a8fb;
   font-family: "Special Elite", monospace;
+
+  white-space: nowrap;
+  animation: linkcursor 500ms infinite normal,
+    tempoa 4s steps(40) 1s normal both;
+  overflow: hidden;
+  z-index: 10;
 }
 
 .input-wrappre {
@@ -167,7 +114,7 @@ button:hover {
   outline: none;
   font-size: 1em;
   letter-spacing: 0.05em;
-  color: black;
+  color: white;
   z-index: 10;
 }
 .input-wrappre span {
@@ -194,7 +141,7 @@ button:hover {
   width: 100%;
   height: 2px;
   border-radius: 4px;
-  transition: 0.5s;
+  transition: 0.7s;
   pointer-events: none;
   background-color: #43f3ff;
   z-index: 9;
@@ -205,68 +152,29 @@ button:hover {
   height: 45px;
 }
 
-.cadastro {
-  border: none;
+.mybotton {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  height: 50px;
-  width: 25%;
-  color: white;
 
-  padding: 20px;
-  font-size: 24px;
-  line-height: 24px;
-  border-radius: 10px;
   position: relative;
-  cursor: pointer;
-  transition: all 400ms ease;
 }
 
-.cadastro {
-  transform-style: preserve-3d;
-  background-color: #2e332e;
-}
-.cadastro::after {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: -100%;
-  left: 0px;
-  height: 50px;
-  width: 100%;
-  padding: 20px;
-  position: absolute;
-  background: #ffb801;
-  border-radius: 10px;
-  content: "Vamoslá?";
-  transform-origin: left bottom;
-  box-sizing: border-box;
-  transform: rotateX(90deg);
-}
-.cadastro:hover {
-  transform-origin: center bottom;
-  transition: 00.5s;
-  transform: rotateX(-90deg) translateY(100%);
-}
-
-.logiAnimado {
+.loginlogar {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 3px;
   border-radius: 10px;
-
   position: relative;
+  cursor: pointer;
 }
-.logiAnimado:hover {
+.loginlogar:hover {
+  transition: 0.9s;
   transform: translateX(20px);
-  transition: 0.7s;
 }
-
-.logiAnimado::after,
-.logiAnimado::before {
+.loginlogar::after,
+.loginlogar::before {
   content: "";
   position: absolute;
   bottom: 0;
@@ -277,19 +185,177 @@ button:hover {
   border-radius: 5px;
 }
 
-.logiAnimado::before {
+.loginlogar::before {
   transform: scaleY(0);
   border-right: 2px solid #09f315;
   border-left: 2px solid #f51d09;
 }
-.logiAnimado::after {
+.loginlogar::after {
   transform: scaleX(0);
   border-top: 2px solid #fbbc05;
   border-bottom: 2px solid #4285f4;
 }
-.logiAnimado:hover:before {
+.loginlogar:hover:before {
   transform: scaleX(1);
 }
-.logiAnimado:hover::after {
+.loginlogar:hover::after {
   transform: scaleX(1);
+}
+
+/**=================stilos de botão 1========**/
+.a-dobotaoa {
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  color: #2196f3;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 25px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.a-dobotaoa:hover {
+  color: #255784;
+  background-color: #2196f3;
+  box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+  transition-delay: 1s;
+}
+
+.spanbotao {
+  position: absolute;
+  display: block;
+}
+
+.spanbotao:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #09f315 10%, #4285f4 50%);
+}
+
+.a-dobotaoa:hover .spanbotao:nth-child(1) {
+  left: 100%;
+  transition: 1s;
+}
+
+.spanbotao:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, pink 1%, #fbbc05 50%);
+}
+
+.a-dobotaoa:hover .spanbotao:nth-child(3) {
+  right: 100%;
+  transition: 1s;
+  transition-delay: 0.5s;
+}
+
+.spanbotao:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #09f315);
+}
+
+.a-dobotaoa:hover .spanbotao:nth-child(2) {
+  top: 100%;
+  transition: 1s;
+  transition-delay: 0.25s;
+}
+
+.spanbotao:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #f51d09);
+}
+
+.a-dobotaoa:hover .spanbotao:nth-child(4) {
+  bottom: 100%;
+  transition: 1s;
+  transition-delay: 0.75s;
+}
+
+/**=================stilos de botão 2========**/
+
+.linkeparacadastro {
+  position: relative;
+  display: inline-block;
+  padding: 5px 15px;
+  color: #2196f3;
+  font-size: 15px;
+  overflow: hidden;
+  transition: 1s;
+}
+.linkeparacadastro:hover {
+  color: #255784;
+  background-color: #2196f3;
+  box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+  transition-delay: 1s;
+}
+
+.spanlinke {
+  position: absolute;
+  display: block;
+}
+
+.spanlinke:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4285f4);
+}
+
+.linkeparacadastro:hover .spanlinke:nth-child(1) {
+  left: 100%;
+  transition: 1s;
+}
+
+.spanlinke:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #fbbc05);
+}
+
+.linkeparacadastro:hover .spanlinke:nth-child(3) {
+  right: 100%;
+  transition: 1s;
+  transition-delay: 0.5s;
+}
+
+.spanlinke:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #09f315);
+}
+
+.linkeparacadastro:hover .spanlinke:nth-child(2) {
+  top: 100%;
+  transition: 1s;
+  transition-delay: 0.25s;
+}
+
+.spanlinke:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #f51d09);
+}
+
+.linkeparacadastro:hover .spanlinke:nth-child(4) {
+  bottom: 100%;
+  transition: 1s;
+  transition-delay: 0.75s;
 }
