@@ -1,4 +1,7 @@
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: rgb(2, 50, 4);
   background: linear-gradient(
     265deg,
@@ -15,11 +18,12 @@ body {
 
 .container-login {
   display: flex;
+  align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 120%;
   margin-bottom: 10rem;
   height: 25rem;
-
+  /* background-image: linear-gradient(285deg, #313868 8%, #111728 100%); */
   cursor: pointer;
   color: black;
 }
@@ -31,48 +35,36 @@ body {
 
 .wrappr-login {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  padding: 40px 40px;
-  height: 21.7rem;
+  padding: 27px 10px;
+  height: 23.4rem;
+  background-image: linear-gradient(225deg, #3043bd 5%, #01050f 100%);
   border-radius: 4px;
-  width: 39.7rem;
+  width: 38.4rem;
   z-index: 10;
   cursor: pointer;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    120deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(4, 4, 65, 1) 89%,
-    rgba(6, 6, 105, 1) 100%,
-    rgba(0, 212, 255, 1) 100%
-  );
 }
 
 .div-lubi::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -0%;
+  top: -60%;
+  left: -10%;
   width: 390px;
-  height: 450px;
-  background: linear-gradient(0deg, transparent, #45f3ff, #45f3ff);
+  height: 440px;
+  background: linear-gradient(0deg, transparent, yellow, yellow);
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
 }
 
 .div-lubi::after {
   content: "";
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
-  top: -50%;
-  left: -0%;
+  top: -60%;
+  left: -10%;
   width: 390px;
-  height: 450px;
-  background: linear-gradient(0deg, transparent, blue, blue);
+  height: 440px;
+  background: linear-gradient(0deg, transparent, #43f3ff, #45f3ff);
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
   animation-delay: -3s;
@@ -95,7 +87,7 @@ body {
   height: 27rem;
   border-radius: 4px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-  width: 45rem;
+  width: 40rem;
   margin: 2rem auto;
   cursor: pointer;
   overflow: hidden;
@@ -108,26 +100,13 @@ body {
   font-size: 12pt;
 }
 
-.mybotton {
-  display: flex;
-
-  justify-content: space-around;
-  top: 2rem;
-  position: relative;
-  text-align: center;
-  height: 60px;
-  width: 100%;
-  align-items: center;
-}
-
 .digite {
   display: flex;
+
+  width: 100%;
+  height: 1.5rem;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 1.3rem;
-  text-align: center;
-  color: #00a8fb;
   font-family: "Special Elite", monospace;
 }
 
@@ -172,7 +151,7 @@ body {
   width: 100%;
   height: 2px;
   border-radius: 4px;
-  transition: 0.5s;
+  transition: 0.7s;
   pointer-events: none;
   background-color: #43f3ff;
   z-index: 9;
@@ -183,42 +162,154 @@ body {
   height: 45px;
 }
 
-/* .cadastro {
-  border: none;
+.mybotton {
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+}
+
+.loginlogar {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  height: 50px;
-  width: 25%;
-  color: black;
-
-  padding: 20px;
-  font-size: 24px;
-  line-height: 24px;
+  padding: 3px;
   border-radius: 10px;
   position: relative;
   cursor: pointer;
-  transition: all 400ms ease;
 }
-
-.cadastro {
-  background-color: #fbbc05;
+.loginlogar:hover {
+  transition: 0.9s;
+  transform: translateX(20px);
 }
-.cadastro::before {
+.loginlogar::after,
+.loginlogar::before {
   content: "";
   position: absolute;
-  top: 8px;
-  left: 0px;
-  width: 0px;
-  height: 64px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  transition: all 2s ease;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 5px;
 }
-.cadastro:hover::before {
+
+.loginlogar::before {
+  transform: scaleY(0);
+  border-right: 2px solid #09f315;
+  border-left: 2px solid #f51d09;
+}
+.loginlogar::after {
+  transform: scaleX(0);
+  border-top: 2px solid #fbbc05;
+  border-bottom: 2px solid #4285f4;
+}
+.loginlogar:hover:before {
+  transform: scaleX(1);
+}
+.loginlogar:hover::after {
+  transform: scaleX(1);
+}
+
+/**=================stilos de botão 1========**/
+.a-dobotaoa {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #2196f3;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 15px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.mybotton button {
+  display: flex;
+
+  border: none;
+  background: transparent;
+  overflow: none;
+  outline: none;
+}
+.button:focus,
+button:active {
+  outline: none;
+  border: none;
+  padding: none;
+  margin: none;
+}
+.a-dobotaoa:hover {
+  color: #255784;
+  background-color: #2196f3;
+  box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+  transition-delay: 1s;
+}
+
+.spanbotao {
+  position: absolute;
+  display: block;
+}
+
+.spanbotao:nth-child(1) {
+  top: 0;
+  left: -100%;
   width: 100%;
-} */
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #09f315 10%, #4285f4 50%);
+}
+
+.a-dobotaoa:hover .spanbotao:nth-child(1) {
+  left: 100%;
+  transition: 1s;
+}
+
+.spanbotao:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, pink 1%, #fbbc05 50%);
+}
+
+.a-dobotaoa:hover .spanbotao:nth-child(3) {
+  right: 100%;
+  transition: 1s;
+  transition-delay: 0.5s;
+}
+
+.spanbotao:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #09f315);
+}
+
+.a-dobotaoa:hover .spanbotao:nth-child(2) {
+  top: 100%;
+  transition: 1s;
+  transition-delay: 0.25s;
+}
+
+.spanbotao:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #f51d09);
+}
+
+.a-dobotaoa:hover .spanbotao:nth-child(4) {
+  bottom: 100%;
+  transition: 1s;
+  transition-delay: 0.75s;
+}
 
 /**=================stilos de botão 2========**/
 
@@ -253,7 +344,7 @@ body {
 
 .linkeparacadastro:hover .spanlinke:nth-child(1) {
   left: 100%;
-  transition: 1s;
+  transition: 0.4s;
 }
 
 .spanlinke:nth-child(3) {
@@ -266,7 +357,7 @@ body {
 
 .linkeparacadastro:hover .spanlinke:nth-child(3) {
   right: 100%;
-  transition: 1s;
+  transition: 0.4s;
   transition-delay: 0.5s;
 }
 
@@ -280,7 +371,7 @@ body {
 
 .linkeparacadastro:hover .spanlinke:nth-child(2) {
   top: 100%;
-  transition: 1s;
+  transition: 0.4s;
   transition-delay: 0.25s;
 }
 
@@ -294,6 +385,81 @@ body {
 
 .linkeparacadastro:hover .spanlinke:nth-child(4) {
   bottom: 100%;
-  transition: 1s;
+  transition: 0.4s;
   transition-delay: 0.75s;
+}
+
+/**=====my-wrapper-input====*/
+
+.my-wrapperinput {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+.info-input-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 49%;
+  height: 100%;
+}
+
+.info-input-2 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 49%;
+  height: 100%;
+}
+
+.digite {
+  overflow: hidden;
+  position: relative;
+}
+
+.digite::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0a80ef;
+  transform: translateX(-101%);
+  animation: enlorgredigite 0.5s 0.6s both, reveldigite 0.5s 1.1s both;
+}
+@keyframes reveldigite {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(101%);
+  }
+}
+
+@keyframes enlorgredigite {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.tex-p {
+  opacity: 0;
+  animation: fadeInText 0s 1.1s both;
+}
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
