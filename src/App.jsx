@@ -1,15 +1,16 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import './App.css'
-import { HomePage } from "./pages/Home/Home"
-import { HomeUserLoged } from "./pages/UserLoged/Home"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import { Login } from "./pages/login";
+import { Cadastro } from "./pages/cadastro";
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomeUserLoged />}/>
-        <Route path="/HomeUserLoged" element={<HomePage />}/>
+        <Route path="/" element={<Login />} />
+        <Route path="/fsfsgg" element={<Cadastro />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
-export default App
+export default App;
