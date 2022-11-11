@@ -20,16 +20,17 @@ export const Login = () => {
                 required="required"
                 autoComplete="false"
               />
-              <span>Usernama</span>
+              <span>E-mail</span>
               <i></i>
             </div>
 
             <div className="input-wrappre">
-              <input name="password" type="pessword" required="required" />
-              <span>pessword</span>
+              <input name="password" type="password" required="required" />
+              <span>Password</span>
               <i></i>
             </div>
-            <div className="mybotton">
+
+            <div className="mybotton-login">
               <a className="a-dobotaoa" href="#">
                 <span className="spanbotao"></span>
                 <span className="spanbotao"></span>
@@ -38,6 +39,7 @@ export const Login = () => {
                 Entrar
               </a>
               <a className="linkeparacadastro" href="#">
+                <span className="spanlinke"></span>
                 <span className="spanlinke"></span>
                 <span className="spanlinke"></span>
                 <span className="spanlinke"></span>
