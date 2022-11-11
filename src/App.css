@@ -1,0 +1,12 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(2, 50, 4);
+  background: linear-gradient(
+    265deg,
+    rgba(2, 50, 4, 1) 0%,
+    rgba(0, 7, 0, 1) 95%,
+    rgba(0, 4, 0, 1) 100%
+  );
+}
