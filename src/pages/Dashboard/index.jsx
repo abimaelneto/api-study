@@ -4,6 +4,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import CreateIcon from "@mui/icons-material/Create";
 import CheckIcon from "@mui/icons-material/Check";
 import { useState } from "react";
+import { SidebarItem } from "./SidebarItem";
+import { Stack } from "@mui/material";
+
 export const Dashboard = () => {
   const [showIconSearch, setShowIconSearch] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -90,38 +93,30 @@ export const Dashboard = () => {
               <div className="info-itens">
                 {areas && (
                   <>
-                    <div className="itens-info-user">
-                      User Name:
-                      <span>Agente da Empresa</span>
-                    </div>
-                    <div className="itens-info-user">
-                      E-mai:
-                      <span>temotio.bernardo@snowmanlabs.com</span>
-                    </div>
-                    <div className="itens-info-user">
-                      Telephone:
-                      <span>+55 41 99761-0111</span>
-                    </div>
-                    <div className="itens-info-user">
-                      Birth date:
-                      <span>02/10/2000</span>
-                    </div>
-                    <div className="itens-info-user">
-                      Registration Date:
-                      <span>23 de Agosto de 2021</span>
-                    </div>
-                    <div className="itens-info-user">
-                      Management level:
-                      <span>Admin</span>
-                    </div>
-                    <div className="itens-info-user">
-                      Password:
-                      <span>*********</span>
-                    </div>
-                    <div className="itens-info-user">
-                      Password confirmation:
-                      <span>*********</span>
-                    </div>
+                    <SidebarItem
+                      title="User Name"
+                      content="Agente da Empresa"
+                    />
+
+                    <SidebarItem
+                      title="E-mai"
+                      content="temotio.bernardo@snowmanlabs.com"
+                    />
+                    <SidebarItem
+                      title="Telephone"
+                      content="+55 41 99761-0111"
+                    />
+                    <SidebarItem title="Birth date" content="02/10/2000" />
+                    <SidebarItem
+                      title="Registration Date"
+                      content="23 de Agosto de 2021"
+                    />
+                    <SidebarItem title="Management level" content="Admin" />
+                    <SidebarItem title="Password" content="*********" />
+                    <SidebarItem
+                      title="Password confirmation"
+                      content="*********"
+                    />
                   </>
                 )}
                 {passwordConf && (
@@ -135,11 +130,17 @@ export const Dashboard = () => {
               </div>
             </div>
             <div className="listUsers">
-              <div className="logoListUsers">
+              <Stack
+                alignItems="center"
+                justifyContent="space-between"
+                flexDirection="row"
+                className="logoListUsers"
+              >
                 <div>Search result</div>
                 <div>List of Users</div>
                 <div>About the project</div>
-              </div>
+              </Stack>
+
               {openlistSearch && (
                 <div
                   onClick={openResultSearch}
