@@ -45,17 +45,5 @@ export const Cadastro = () => {
 
 const [openlistUsers, setOpenlistUsers] = useState(false)
 const [openlistMore, setOpenlistMore] = useState(false)
-const openUsers = () => {
-        setOpenlistSearch(false)
-        setOpenlistMore(!openlistMore)
-        setOpenlistUsers(!openlistUsers)
-    }
-    const openMore = () => {
-        setOpenlistMore(true)
-        setOpenlistSearch(false)
-        setOpenlistUsers(false)
-    }
-    {openlistUsers &&
-                                <div onClick={openUsers} className="listUser-users">List of Users</div>}
-                            {openlistMore &&
-                                <div onClick={openMore} className="listUser-more">About the project</div>}
+
+    

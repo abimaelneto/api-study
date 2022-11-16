@@ -300,7 +300,7 @@ span:hover {
   background-color: #008080;
 }
 
-.listUser-resultSearch {
+.resultSearch {
   display: flex;
   font-display: auto;
   align-items: center;
@@ -309,6 +309,66 @@ span:hover {
   width: 100%;
   min-height: 42rem;
   background-color: rgb(39, 30, 30);
+}
+
+.listUser-resultSearch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 42rem;
+  transition: .9s;
+  overflow-y: scroll;
+}
+
+.listUser-users {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  width: 100%;
+  min-height: 42rem;
+  height: 42rem;
+  transition: .9s;
+  overflow-y: auto;
+}
+.listUser-resultSearch::-webkit-scrollbar,
+.listUser-users::-webkit-scrollbar {
+  background-color: rgb(51, 121, 140);
+  width: 10px;
+}
+
+.listUser-users::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background-color: rgb(53, 53, 53);
+  border-radius: 100%;
+  width: 5px;
+}
+
+.listUser-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 42rem;
+  transition: .9s;
+  filter: brightness(0.6);
+  background-image: url(../../assets/users.webp);
+  background-size: contain;
+}
+
+.users {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 3px;
+  width: 100%;
+  height: 1.2rem;
+  font-family: serif;
+  color:rgb(234, 227, 227);
+  background-color: rgb(51, 121, 140);
 }
 
 @keyframes show {
@@ -364,6 +424,7 @@ span:hover {
     border-bottom: 0.1px solid rgb(182, 182, 182);
     border-top: 0.1px solid rgb(175, 251, 117);
   }
+
   .listUsers {
     display: flex;
     flex-direction: column;
@@ -378,14 +439,17 @@ span:hover {
     margin-bottom: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
+
   .logoListUsers:hover {
     transition: 0.9s;
     background-color: black;
   }
+
   .logoListUsers div:hover {
     transition: 0.9s;
     background-color: #008080;
   }
+
   .listUser-resultSearch {
     display: flex;
     font-display: auto;
