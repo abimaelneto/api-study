@@ -1,13 +1,15 @@
-import './index.css'
-import { InputConponent } from './InputConponent'
-import VisibilityIcon from '@mui/icons-material/Visibility';
+// import './index.css'
+import { Input } from '../../components/Input'
+import {Visibility} from '@mui/icons-material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import MailIcon from '@mui/icons-material/Mail';
 import BadgeIcon from '@mui/icons-material/Badge';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
-import { Button } from '@mui/material'
+import { Button, FormControl, InputAdornment, InputLabel } from '@mui/material'
 import { Stack } from '@mui/system'
 import { useState } from 'react';
+import { AccountCircle } from '@mui/icons-material';
+
 export const InputesList = () => {
     const [showInput, setShowInput] = useState(true)
     const [shows, setShows] = useState(false)
@@ -43,7 +45,7 @@ export const InputesList = () => {
         <>
 
             <div className='conponent_too' >
-                <InputConponent
+                <Input
                     title="Username"
                     tipo='text'
                     fundo='Digita seu nome'
@@ -51,7 +53,7 @@ export const InputesList = () => {
                 <BadgeIcon />
             </div >
             <div className='conponent_too'>
-                <InputConponent
+                <Input
                     title="data de nascimento"
                     tipo='text'
                     fundo='Digite a sua data de nascimento'
@@ -59,7 +61,7 @@ export const InputesList = () => {
                 <BadgeIcon />
             </div>
             <div className='conponent_too'>
-                <InputConponent
+                <Input
                     title="Telefone"
                     tipo='number'
                     fundo='Digita seu número do celular'
@@ -67,20 +69,33 @@ export const InputesList = () => {
                 <ContactPhoneIcon />
             </div>
             <div className='conponent_too'>
-                <InputConponent
+                <Input
                     title="E_mail"
                     tipo='email'
                     fundo='Digita seu E_mail'
                 />
                 <MailIcon />
             </div>
-
+            
+            <FormControl variant="standard">
+                        <InputLabel htmlFor="input-with-icon-adornment">
+                        With a start adornment
+                        </InputLabel>
+                        <Input
+                        id="input-with-icon-adornment"
+                        endAdornment={
+                            <InputAdornment position="end">
+                            <Visibility />
+                            </InputAdornment>
+                        }
+                        />
+                    </FormControl>
             {
                 show
                     ?
                     <>
                         <div className='conponent_too'>
-                            <InputConponent
+                            <Input
                                 title="Password"
                                 tipo='text'
                                 fundo='Criar uma senha'
@@ -88,7 +103,7 @@ export const InputesList = () => {
                             <VisibilityIcon onClick={openInputText} />
                         </div>
                         <div className='conponent_too'>
-                            <InputConponent
+                            <Input
                                 title="Password Confirmation"
                                 tipo='text'
                                 fundo='Confirmar a sua senha'
@@ -99,7 +114,7 @@ export const InputesList = () => {
                     :
                     <>
                         <div className='conponent_too'>
-                            <InputConponent
+                            <Input
                                 title="Password"
                                 tipo='password'
                                 fundo='Criar uma senha'
@@ -108,7 +123,7 @@ export const InputesList = () => {
                             <VisibilityOffIcon onClick={openInputText} />
                         </div>
                         <div className='conponent_too'>
-                            <InputConponent
+                            <Input
                                 title="Password Confirmation"
                                 tipo='password'
                                 fundo='Confirmar a sua senha'
@@ -119,33 +134,7 @@ export const InputesList = () => {
                         </div>
                     </>
             }
-            <div className='center-input-checkbox'>
-                <input
-                    className='checkbox'
-                    onClick={showButton}
-                    type="checkbox"
-                    id="opt1"
-                />
-                <div>
-                    Aceito termos e condições
-                </div>
-            </div>
-            <Stack>
-                {shows
-                    &&
-                    <Button onClick={cadastrar} variant="contained" color="primary">
-                        Cadastrar
-                    </Button>
-                }
-                {showInput
-                    &&
-                    <Button variant="contained" disabled>
-                        Cadastrar
-                    </Button>
-                }
-            </Stack>
-
-
+        
         </>
     )
 
