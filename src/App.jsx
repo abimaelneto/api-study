@@ -1,13 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { HomePage } from "./pages/Home/Home";
-import { Dashboard } from "./pages/Dashboard";
+import { CadastroUser} from "./pages/CadastroUserPage/index"
+import { Dashboard } from "./pages/Dashboard/index";
+import { HomePage } from "./pages/Home/Home"
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/Dashboard" element={<HomePage />} />
+        <Route path="/" element={<CadastroUser />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/index" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
   );
