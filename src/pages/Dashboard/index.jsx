@@ -5,7 +5,8 @@ import CreateIcon from "@mui/icons-material/Create";
 import CheckIcon from "@mui/icons-material/Check";
 import { useState } from "react";
 import { SidebarItem } from "./SidebarItem";
-import { Stack } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, Stack } from "@mui/material";
+import { Cancel, CancelOutlined } from "@mui/icons-material";
 
 const users = [
   {
@@ -26,39 +27,34 @@ const List_Users = ({ username }) => {
 }
 export const Dashboard = () => {
   const [a, setA] = useState(false)
-  const [showIconSearch, setShowIconSearch] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
-  const [showEditIcon, setShowEditIcon] = useState(true);
+
+  const [showUserOptions, setShowUserOptions] = useState(false)
+  const [showAdminOptions, setShowAdminOptions] = useState(false)
+
+  const [show, setShow] = useState({
+    iconSearch: false,
+  })
+
+  const [open, setOpen] = useState({
+    offices: false,
+    listSearch: true,
+    listUsers: false,
+    listMore: false
+  })
+
   const [passwordConf, setPasswordConf] = useState(false);
   const [areas, setAreas] = useState(true);
-  const [openOffices, setOpenOffices] = useState(false);
-  const [openlistSearch, setOpenlistSearch] = useState(true);
-  const [openlistUsers, setOpenlistUsers] = useState(false)
-  const [openlistMore, setOpenlistMore] = useState(false)
-  const openResultSearch = () => {
-    setOpenlistSearch(true);
-    setOpenlistMore(false)
-    setOpenlistUsers(false)
-    setA(false)
-    setTimeout(() => {
-      setA(true)
-      setOpenlistSearch(false);
-      setOpenlistMore(false)
-      setOpenlistUsers(false)
-    }, "10000")
-  };
-  const openUsers = () => {
-    setOpenlistUsers(true)
-    setOpenlistSearch(false)
-    setOpenlistMore(false)
-    setA(false)
+
+  const handleOpen = (property) => {
+    let meuNovoObjeto = {}
+    for (let chave of Object.keys(open)) {
+      meuNovoObjeto[chave] = false
+    }
+    meuNovoObjeto[property] = true
+    setOpen(meuNovoObjeto)
   }
-  const openMore = () => {
-    setOpenlistMore(true)
-    setOpenlistSearch(false)
-    setOpenlistUsers(false)
-    setA(false)
-  }
+
+
   const openoffices = () => {
     setOpenOffices(!openOffices);
     setShowEditIcon(false);
@@ -75,22 +71,29 @@ export const Dashboard = () => {
     setPasswordConf(!passwordConf);
     setShowEdit(false);
   };
+
+
+  const handleShow = (property) => {
+    let meuNovoObjeto = {}
+    for (let chave of Object.keys(show)) {
+      meuNovoObjeto[chave] = false
+    }
+    console.log('novo', meuNovoObjeto)
+    meuNovoObjeto[property] = true
+    setShow(meuNovoObjeto)
+  }
+  const handleCloseUserOptions = () => setShowUserOptions(false)
+  const handleCloseAdminOptions = () => setShowAdminOptions(false)
+
   const showItens = () => {
-    setShowEditIcon(true);
-    setShowEdit(false);
-    setOpenOffices(false);
+
   };
   const showEdits = () => {
-    setShowEditIcon(false);
-    setShowEdit(!showEdit);
   };
   const showSearch = () => {
-    setShowIconSearch(!showIconSearch);
   };
   const closedShow = () => {
-    setShowIconSearch(false);
   };
-
 
 
   return (
@@ -98,7 +101,7 @@ export const Dashboard = () => {
       <div className="containerUserLoged">
         <Header />
         <div className="mini-container">
-          {showIconSearch && (
+          {show.iconSearch && (
             <div className="inputSearchAndIcon">
               <input
                 placeholder="Search users"
@@ -111,24 +114,20 @@ export const Dashboard = () => {
           )}
           <div onClick={closedShow} className="infoUser">
             <div className="info">
-              {openOffices && (
-                <Stack className="more-info-user">
-                  <div onClick={showItens}>Add as assistant/Admin</div>
-                  <div onClick={showItens}>Add as admin</div>
-                </Stack>
-              )}
-              {showEdit && (
-                <Stack className="more-info-user">
-                  <div onClick={openoffices}>Level Up</div>
-                  <div onClick={passwordConfs}>Delete User</div>
-                </Stack>
-              )}
+
+
+
               <h3>
                 Info User
-                {showEditIcon && (
-                  <CreateIcon onClick={showEdits} className="edit-user" />
-                )}
+
+
+
+
+                <CreateIcon onClick={() => setShowUserOptions(true)} className="edit-user" />
+
+
               </h3>
+
               {passwordConf && (
                 <h3 className="confirmation-title">
                   Confirmation Password
@@ -182,21 +181,21 @@ export const Dashboard = () => {
                 flexDirection="row"
                 className="logoListUsers"
               >
-                <div onClick={openResultSearch}
+                <div onClick={() => handleOpen('listSearch')}
                 >
                   Search result
                 </div>
-                <div onClick={openUsers}
+                <div onClick={() => handleOpen('listUsers')}
                 >
                   List of Users
                 </div>
-                <div onClick={openMore}
+                <div onClick={() => handleOpen('listMore')}
                 >
                   About the project
                 </div>
               </Stack>
               {a && <h2>Em repouso...</h2>}
-              {openlistSearch &&
+              {open.listSearch &&
                 <div
                   className="listUser-resultSearch"
                 >
@@ -205,7 +204,7 @@ export const Dashboard = () => {
                   )))}
                 </div>
               }
-              {openlistUsers &&
+              {open.listUsers &&
                 <div
                   className="listUser-users">
                   {users.map((item => (
@@ -213,7 +212,7 @@ export const Dashboard = () => {
                   )))}
                 </div>
               }
-              {openlistMore &&
+              {open.listMore &&
                 <div
                   className="listUser-more">
                   About the project
@@ -222,10 +221,39 @@ export const Dashboard = () => {
             </div>
           </div>
         </div>
-        <p onClick={showSearch} className="search">
+        <p onClick={() => {
+          handleShow('iconSearch')
+        }} className="search">
           <SearchIcon />
         </p>
       </div>
+
+
+      <Dialog open={showUserOptions} onClose={handleCloseUserOptions} >
+        <DialogContent>
+          <Stack sx={{ width: '100%' }} >
+            <div onClick={() => {
+              handleOpen('offices')
+              handleCloseUserOptions()
+              setShowAdminOptions(true)
+            }}>Level Up</div>
+            <div onClick={passwordConfs}>Delete User</div>
+          </Stack>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseUserOptions}>Voltar</Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={showAdminOptions} onClose={handleCloseAdminOptions}>
+        <DialogContent>
+          <Stack >
+            <div onClick={() => handleShow('editIcon')}>Add as assistant/Admin</div>
+            <div onClick={() => handleShow('editIcon')}>Add as admin</div>
+          </Stack>
+        </DialogContent>
+      </Dialog>
+
     </>
   );
 };
