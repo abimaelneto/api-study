@@ -90,6 +90,9 @@ export const Dashboard = () => {
   const closedShow = () => {
     setShowIconSearch(false);
   };
+
+
+
   return (
     <>
       <div className="containerUserLoged">
@@ -144,7 +147,7 @@ export const Dashboard = () => {
                     />
 
                     <SidebarItem
-                      title="E-mai"
+                      title="E-mail"
                       content="temotio.bernardo@snowmanlabs.com"
                     />
                     <SidebarItem
