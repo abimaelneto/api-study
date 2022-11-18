@@ -1,6 +1,10 @@
 import { useState } from "react"
 
-export const Form = () => {
+export const Form = ({children}) => {
     const [data, setData] = useState()
-    return 
+
+    const handleSubmit = () => {
+        alert('submit')
+    }
+    return <form onSubmit={handleSubmit}>{children}</form>
 }
