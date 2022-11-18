@@ -1,0 +1,92 @@
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 2em;
+}
+.input-wrapper input {
+  position: relative;
+  width: 100%;
+  padding: 20px 10px 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  letter-spacing: 0.05em;
+  color: black;
+  z-index: 10;
+}
+.input-wrapper span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 20px 10px 10px;
+  font-size: 0.9em;
+  transition: 0.7s;
+  color: white;
+}
+
+.input-wrapper input:valid ~ span,
+.input-wrapper input:focus ~ span {
+  color: #00a8fb;
+  font-family: "Special Elite", monospace;
+  transform: translateX(-10px) translateY(-35px);
+  font-size: 0.75em;
+}
+.input-wrapper i {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  left: 0;
+  bottom: 0px;
+  width: 100%;
+  height: 2px;
+  border-radius: 4px;
+  transition: 0.7s;
+  pointer-events: none;
+  background-color: #43f3ff;
+  z-index: 9;
+  cursor: pointer;
+}
+.icon {
+  position: fixed;
+  align-items: center;
+}
+.input-wrapper input:valid ~ i,
+.input-wrapper input:focus ~ i {
+  height: 45px;
+}
+
+.mybotton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.input-wrapper i span {
+  position: absolute;
+  transform: translateY(-50%);
+  position: fixed;
+  margin-right: -50%;
+  
+  
+}
+/* .input-field{
+  width: 100%;
+  height: 40px; 
+  border: 0;
+  border-radius: 4px;
+  padding-left: 10px;
+  outline: none;
+
+}
+.input-field {
+  display: flex;
+  text-align: center;
+  position: absolute;
+  position: fixed;
+  margin-right: -50%;
+  cursor: pointer;
+} */

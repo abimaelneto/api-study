@@ -1,0 +1,107 @@
+.container-login {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 10rem;
+  height: 25rem;
+
+  cursor: pointer;
+  color: black;
+}
+/* .div-lubi:hover {
+  transition: 1s;
+  background-image: linear-gradient(225deg, #818dd8 5%, #01050f 100%);
+  transform: translateY(-1rem);
+} */
+
+.wrapper-login {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 40px;
+  height: 15.3rem;
+  background-image: linear-gradient(225deg, #3043bd 5%, #01050f 100%);
+  border-radius: 4px;
+  width: 34.8rem;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.div-lubi::before {
+  content: "";
+  position: absolute;
+  top: -90%;
+  left: -10%;
+  width: 390px;
+  height: 440px;
+  background: linear-gradient(0deg, transparent, yellow, yellow);
+  transform-origin: bottom right;
+  animation: animate 6s linear infinite;
+}
+
+.div-lubi::after {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -10%;
+  width: 390px;
+  height: 440px;
+  background: linear-gradient(0deg, transparent, #43f3ff, #45f3ff);
+  transform-origin: bottom right;
+  animation: animate 6s linear infinite;
+  animation-delay: -3s;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.div-lubi {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20.6rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  width: 40rem;
+  margin: 2rem auto;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.wrapper-login p {
+  display: flex;
+  margin-top: 10px;
+  color: #00a8fb;
+  font-size: 12pt;
+}
+
+.digite {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 1.3rem;
+  text-align: center;
+
+  font-family: "Special Elite", monospace;
+
+  z-index: 10;
+}
+
+.mybotton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 60px;
+  margin: 20px;
+  width: 100%;
+  height: 150px;
+}
