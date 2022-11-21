@@ -1,6 +1,11 @@
 import './Home.css'
 import { Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 export const HomePage = () => {
+    const navigate = useNavigate()
+    const innerCadastro = ( ) => {
+        navigate("/CadastroUser")
+    }
     return (
         <>
             <div className="container">
@@ -8,10 +13,10 @@ export const HomePage = () => {
                     Log in or Register
                 </h1>
                 <div className='container-bottons-center'>
-                    <Button variant="contained" color="primary">
+                    <Button  variant="contained" color="primary">
                         Log in
                     </Button>
-                    <Button variant="contained" color="secondary">
+                    <Button onClick={innerCadastro} variant="contained" color="secondary">
                         Register
                     </Button>
                 </div>
