@@ -3,14 +3,11 @@
     --fundo: linear-gradient(to right, rgba(0, 0, 0, 0.959), rgb(0, 135, 252));
     --cor-texto: #FFA500;
 }
-
 body {
     background-color: var(--background-color);
     background-image: url(../../assets/users.webp);
     background-size: cover;
-
 }
-
 .container {
     position: absolute;
     flex-direction: column;
