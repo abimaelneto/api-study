@@ -1,4 +1,4 @@
-/* :root {
+:root {
     --background-color: black;
     --fundo: linear-gradient(to right, rgba(0, 0, 0, 0.959), rgb(0, 135, 252));
     --cor-texto: #FFA500;
@@ -42,20 +42,24 @@
     width: 80%;
     height: 2.8rem;
 }
-
+.muiInput {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 8 0%;
+    height: 2.8rem;
+}
 .left_stack span {
     height: 0.4rem;
 }
-
-
 .conponent_too {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 80%;
     height: 3rem;
-
 }
+
 .center-input-checkbox {
     display: flex;
     align-items: center;
@@ -63,16 +67,18 @@
     width: 70%;
     background-color: rgba(157, 154, 154, 0.3);
 }
-.center-input-checkbox .checkbox{
+
+.center-input-checkbox .checkbox {
     width: 1.5rem;
     height: 1.5rem;
     background-color: #fff;
-    
-}
-.center-input-checkbox div{
-text-align: left;
 
-} */
+}
+
+.center-input-checkbox div {
+    text-align: left;
+
+}
 
 /* 
 img {
