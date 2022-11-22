@@ -26,7 +26,10 @@ export const CadastroUser = () => {
                     <InputesList/>
 
                     <FormGroup>
-                        <FormControlLabel control={<Checkbox onClick={handleTermos} />} label="Aceito termos e condições" />
+                        <FormControlLabel 
+                        control={<Checkbox 
+                        onClick={handleTermos} />} 
+                        label="Aceito termos e condições deste logal" />
                     </FormGroup>
                     
                     <Stack>
@@ -36,15 +39,6 @@ export const CadastroUser = () => {
                             </Button>
                      
                     </Stack>
-                  <Password label="Password do Quizito" iconShow={<AccountCircle/>} iconNotShow={<AccessAlarm/>}/>
-                  <Password label="Password do Temotio"/>
-
-                  <Password label="Senha 1 "/>
-
-                  <Password label="Senha 2"/>
-
-                  <Password label="Password do Quizito"/>
-
                 </Stack>
             </div>
         </>
