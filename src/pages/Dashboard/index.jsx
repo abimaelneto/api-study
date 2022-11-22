@@ -84,6 +84,9 @@ export const Dashboard = () => {
   }
   const handleCloseUserOptions = () => setShowUserOptions(false)
   const handleCloseAdminOptions = () => setShowAdminOptions(false)
+  const closedOptions = ()=> {
+
+  }
 
   const showItens = () => {
 
@@ -119,13 +122,7 @@ export const Dashboard = () => {
 
               <h3>
                 Info User
-
-
-
-
                 <CreateIcon onClick={() => setShowUserOptions(true)} className="edit-user" />
-
-
               </h3>
 
               {passwordConf && (
