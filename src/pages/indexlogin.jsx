@@ -1,21 +1,23 @@
 import React from "react";
 import "./login.css";
-import { HelloWorld } from "../componentlogin/infoinputs/HelloWorld";
-import { Infobutton } from "../componentlogin/infobotao/Indexabutton";
+import { HelloWorld } from "../conponenlogin/infoinputs/HelloWord";
+import { Button } from "../components/Button";
+import { Link } from "react-router-dom";
 export const Login = () => {
   return (
     <>
-      <div className="container-login" data-aos="flip-left">
+      <div className="container">
         <div className="div-lubi">
           <div className="wrapper-login">
             <div className="digite">
-              <p>Para garantir a sua segurança faça login</p>
+              <h2>Para garantir a sua segurança faça login</h2>
             </div>
-
             <HelloWorld />
-
             <div className="mybotton">
-              <Infobutton />
+              <Button fullWidth={true} variant="contained" text="Logar-se" />
+              <Link to="/cadastroUser">
+                <Button variant="outlined" text="Cadastrar" />
+              </Link>
             </div>
           </div>
         </div>
