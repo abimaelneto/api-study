@@ -1,8 +1,7 @@
 import React from "react";
 import "./login.css";
 import { HelloWorld } from "../conponenlogin/infoinputs/HelloWord";
-import { Button } from "../components/Button";
-import { Link } from "react-router-dom";
+
 export const Login = () => {
   return (
     <>
@@ -13,12 +12,7 @@ export const Login = () => {
               <h2>Para garantir a sua segurança faça login</h2>
             </div>
             <HelloWorld />
-            <div className="mybotton">
-              <Button fullWidth={true} variant="contained" text="Logar-se" />
-              <Link to="/cadastroUser">
-                <Button variant="outlined" text="Cadastrar" />
-              </Link>
-            </div>
+           
           </div>
         </div>
       </div>
