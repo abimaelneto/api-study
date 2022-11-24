@@ -3,12 +3,8 @@ import { Stack } from "@mui/material";
 export const InputConponentLogin = (
     {
         title,
-        nome,
-        tipo,
-        placeholder,
-        required,
-        autoComplete,
-        icon
+        icon,
+        ...props
     }
 ) => {
     return (
@@ -21,13 +17,8 @@ export const InputConponentLogin = (
                     className="left_stack">
                     <span>{title}</span>
                     <Inputs
-                        style={{ color: 'white' }}
                         className='input'
-                        name={nome}
-                        type={tipo}
-                        placeholder={placeholder}
-                        required={required}
-                        autoComplete={autoComplete}
+                        {...props}
                     />
 
                 </Stack>
