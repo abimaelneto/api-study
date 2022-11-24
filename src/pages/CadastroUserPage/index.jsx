@@ -18,26 +18,34 @@ export const CadastroUser = () => {
     return (
         <>
             <div className="container">
-                
-                <h1 className="cad-h1" style={{ color: 'green' }}>
-                    Registrar usuarios
-                </h1>
-                <Stack className="form-cadastro"  >
-                    <InputesList />
+                <div className="div-lubi-cadastro">
+                    <div className="wrapper-login-cadastro">
+                        <h1 className="cad-h1" style={{ width: '100%'}}>
+                            Registrar usuarios
+                        </h1>
 
-                    <FormGroup>
-                        <FormControlLabel
-                            control={<Checkbox
-                                onClick={handleTermos} />}
-                            label="Aceito termos e condições deste logal" />
-                    </FormGroup>
-                    <Link to="/login">Já tem login?</Link>
-                    <Stack>
-                        <Button onClick={handleCadastrar} variant="contained" color="primary" disabled={!aceitouTermos}>
-                            Cadastrar
-                        </Button>
-                    </Stack>
-                </Stack>
+                        <Stack className="form-cadastro"  >
+                            <InputesList />
+
+                            <FormGroup>
+                                <FormControlLabel
+                                    control={<Checkbox
+                                        onClick={handleTermos} />}
+                                    label="Aceito termos e condições deste logal" />
+                            </FormGroup>
+                            <div className='wrapper-button'>
+                                <Button fullWidth={true} onClick={handleCadastrar} variant="contained" color="primary" disabled={!aceitouTermos}>
+                                    Cadastrar
+                                </Button>
+                                <Link to='/login'>
+                                    <Button  variant="outlined">
+                                        Login
+                                    </Button>
+                                </Link>
+                            </div>
+                        </Stack>
+                    </div>
+                </div>
             </div>
         </>
     )
