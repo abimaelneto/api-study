@@ -1,26 +1,57 @@
 import { useState } from "react";
 import "./index.css";
-import { AccessAlarm, AccountCircle, Mail, Visibility, VisibilityOff } from '@mui/icons-material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 import MailIcon from '@mui/icons-material/Mail';
 import { Button } from "../../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { InputConponentLogin } from "./Inpunts";
+import { Dialog, DialogActions, DialogContent, Stack } from "@mui/material";
 
 
 export const HelloWorld = () => {
-  const docs = [
-    { emailDocs: "oitomitluis32@gmail.com" },
-    { passwordDocs: "camotio32" }
-  ]
-  const [showPassword, setShowPassword] = useState(false)
-  const show = () => setShowPassword(!showPassword)
+  const docs = {
+    emailDocs: "oitomitluis32@gmail.com",
+    passwordDocs: "camotio32"
+  }
+  const [showErroDinamic, setErroDinamic] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
+  const navegate = useNavigate()
+  const [erro, setErro] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const show = () => setShowPassword(!showPassword)
 
   const handleSubmit = () => {
-
-    if(password.length == undefined ) {
-      alert("erro")
+    if (!password && email) {
+      setErroDinamic('O campo password não está preenhido!')
+      setErro(!erro)
+      setTimeout(() => {
+        setErro(false)
+      }, "3000")
+    } else if (!email && password) {
+      setErroDinamic('O campo email não está preenhido!')
+      setErro(!erro)
+      setTimeout(() => {
+        setErro(false)
+      }, "3000")
+    } else if (!password || !email) {
+      setErroDinamic('Nenhum dos campos foi preenchido!')
+      setErro(!erro)
+      setTimeout(() => {
+        setErro(false)
+      }, "3000")
+    } else if (password || email) {
+      if (password == docs.passwordDocs
+        || email == docs.emailDocs
+      ) {
+        navegate('/dashboard')
+      } else {
+        setErroDinamic('Seus dados passados nos campos não são reconhecidos!')
+        setErro(!erro)
+        setTimeout(() => {
+          setErro(false)
+        }, "3000")
+      }
     }
   }
   const handleEmail = (e) => {
@@ -36,6 +67,7 @@ export const HelloWorld = () => {
       <InputConponentLogin
         title='E-mail'
         placeholder="Digita o seu e_mail"
+        type='email'
         value={email}
         sx={{ color: "white" }}
         onChange={handleEmail}
@@ -61,6 +93,14 @@ export const HelloWorld = () => {
           <Button variant="outlined" text="Cadastrar" />
         </Link>
       </div>
+      <Dialog open={erro}>
+        <DialogContent>
+          <Stack >
+            <div className="erro" style={{ color: 'red' }}>{showErroDinamic}</div>
+            <div style={{ color: 'red' }}>Por favor preencha</div>
+          </Stack>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
