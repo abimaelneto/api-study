@@ -313,8 +313,10 @@ span:hover {
 
 .listUser-resultSearch {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 5px;
   width: 100%;
   min-height: 42rem;
   transition: .9s;
@@ -333,6 +335,7 @@ span:hover {
   transition: .9s;
   overflow-y: auto;
 }
+
 .listUser-resultSearch::-webkit-scrollbar,
 .listUser-users::-webkit-scrollbar {
   background-color: rgb(51, 121, 140);
@@ -361,13 +364,14 @@ span:hover {
 
 .users {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding-block: 3px;
   width: 100%;
   height: 1.2rem;
   font-family: serif;
-  color:rgb(234, 227, 227);
+  color: rgb(234, 227, 227);
   background-color: rgb(51, 121, 140);
 }
 
