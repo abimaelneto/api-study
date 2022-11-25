@@ -1,5 +1,6 @@
 import './Home.css'
 import { AnimationPage } from './animation'
+import { useNavigate } from 'react-router-dom'
 export const HomePage = () => {
     const navigate = useNavigate()
     const innerCadastro = ( ) => {

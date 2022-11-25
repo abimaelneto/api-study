@@ -1,21 +1,19 @@
-import { Input as MuiInput } from "@mui/material"
+import { Input as MuiInput, Typography } from "@mui/material"
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useState } from "react";
 export const MudarInput = () => {
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
+    
+    const match = password === passwordConfirmation
     const [icon, setIcon] = useState(true)
     const Mostrar_ocultar = () => {
         setIcon(!icon)
     }
-    const handleChangePassword = (e) => {
+    const handleChange = (e, setState) => {
         const newPassword = e.target.value;
-        setPassword(newPassword);
-    }
-    const handlePasswordConfirmation = (e) => {
-        const newPasswordConfirmation = e.target.value;
-        setPasswordConfirmation(newPasswordConfirmation);
+        setState(newPassword);
     }
     return (
         <>
@@ -23,11 +21,12 @@ export const MudarInput = () => {
                 <div className="left_stack muiInput">
                     <span>Password</span>
                     <MuiInput
-                        className='input'
+                        fullWidth={true}
+                        sx={{ color: 'white' }}
                         type={icon ? 'text' : 'password'}
                         placeholder='Digite a sua senha'
                         value={password}
-                        onChange={handleChangePassword}
+                        onChange={(e) => handleChange(e, setPassword)}
                     />
                 </div>
                 {icon ? <VisibilityIcon
@@ -38,17 +37,19 @@ export const MudarInput = () => {
                 <div className="left_stack muiInput">
                     <span>Password confirmation</span>
                     <MuiInput
-                        className='input'
+                        fullWidth={true}
+                        sx={{ color: 'white' }}
                         type={icon ? 'text' : 'password'}
                         placeholder='Confirma a sua senha'
                         value={passwordConfirmation}
-                        onChange={handlePasswordConfirmation}
+                        onChange={(e) => handleChange(e, setPasswordConfirmation)}
                     />
                 </div>
                 {icon ? <VisibilityIcon
                     onClick={Mostrar_ocultar}
                 /> : <VisibilityOffIcon onClick={Mostrar_ocultar} />}
             </div>
+            {!match && <Typography color="error.main">Senhas não conferem</Typography>}
         </>
     )
 }
