@@ -1,6 +1,10 @@
 import './Home.css'
 import { AnimationPage } from './animation'
 export const HomePage = () => {
+    const navigate = useNavigate()
+    const innerCadastro = ( ) => {
+        navigate("/CadastroUser")
+    }
     return (
         <>
             <AnimationPage
