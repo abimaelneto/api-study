@@ -6,20 +6,8 @@ import CheckIcon from "@mui/icons-material/Check";
 import { useState } from "react";
 import { SidebarItem } from "./SidebarItem";
 import { Button, Dialog, DialogActions, DialogContent, Stack } from "@mui/material";
-import { Cancel, CancelOutlined } from "@mui/icons-material";
+import { users } from "../../mocks/users";
 
-const users = [
-  {
-    username: 'Temotio Luis Bernardo',
-    e_mail: 'temotioluisbernardo@gmail.com',
-    telephone: '41 997610666',
-    brirth_date: '01/10/2012',
-    registration: '23 de Agosto de 2021',
-    mag_level: 'Admin',
-    password: '**********',
-    confirm_password: '**********'
-  },
-]
 const List_Users = ({ username }) => {
   return (
     <Stack className="users">{username}</Stack>
@@ -27,14 +15,11 @@ const List_Users = ({ username }) => {
 }
 export const Dashboard = () => {
   const [a, setA] = useState(false)
-
   const [showUserOptions, setShowUserOptions] = useState(false)
   const [showAdminOptions, setShowAdminOptions] = useState(false)
-
   const [show, setShow] = useState({
     iconSearch: false,
   })
-
   const [open, setOpen] = useState({
     offices: false,
     listSearch: true,
@@ -84,6 +69,9 @@ export const Dashboard = () => {
   }
   const handleCloseUserOptions = () => setShowUserOptions(false)
   const handleCloseAdminOptions = () => setShowAdminOptions(false)
+  const closedOptions = () => {
+
+  }
 
   const showItens = () => {
 
@@ -119,13 +107,7 @@ export const Dashboard = () => {
 
               <h3>
                 Info User
-
-
-
-
                 <CreateIcon onClick={() => setShowUserOptions(true)} className="edit-user" />
-
-
               </h3>
 
               {passwordConf && (
@@ -199,7 +181,7 @@ export const Dashboard = () => {
                 <div
                   className="listUser-resultSearch"
                 >
-                  {users.map((item => (
+                  {users?.map((item => (
                     <List_Users key={item.name} {...item} />
                   )))}
                 </div>
