@@ -6,6 +6,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import { useState } from "react";
 import { SidebarItem } from "./SidebarItem";
 import { Button, Dialog, DialogActions, DialogContent, Stack } from "@mui/material";
+import { users } from "../../mocks/users";
 
 const List_Users = ({ username }) => {
   return (
@@ -14,14 +15,11 @@ const List_Users = ({ username }) => {
 }
 export const Dashboard = () => {
   const [a, setA] = useState(false)
-
   const [showUserOptions, setShowUserOptions] = useState(false)
   const [showAdminOptions, setShowAdminOptions] = useState(false)
-
   const [show, setShow] = useState({
     iconSearch: false,
   })
-
   const [open, setOpen] = useState({
     offices: false,
     listSearch: true,
@@ -183,7 +181,7 @@ export const Dashboard = () => {
                 <div
                   className="listUser-resultSearch"
                 >
-                  {users.map((item => (
+                  {users?.map((item => (
                     <List_Users key={item.name} {...item} />
                   )))}
                 </div>
