@@ -20,17 +20,16 @@ export const CadastroUser = () => {
             <div className="container">
                 <div className="div-lubi-cadastro">
                     <div className="wrapper-login-cadastro">
-                        <h1 className="cad-h1" style={{ width: '100%'}}>
+                        <h1 className="cad-h1" style={{ width: '100%' }}>
                             Registrar usuarios
                         </h1>
-
                         <Stack className="form-cadastro"  >
                             <InputesList />
-
                             <FormGroup>
                                 <FormControlLabel
                                     control={<Checkbox
-                                        onClick={handleTermos} />}
+                                        onClick={handleTermos} />
+                                    }
                                     label="Aceito termos e condições deste logal" />
                             </FormGroup>
                             <div className='wrapper-button'>
@@ -38,7 +37,7 @@ export const CadastroUser = () => {
                                     Cadastrar
                                 </Button>
                                 <Link to='/login'>
-                                    <Button  variant="outlined">
+                                    <Button variant="outlined">
                                         Login
                                     </Button>
                                 </Link>
