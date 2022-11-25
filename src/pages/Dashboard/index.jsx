@@ -14,7 +14,7 @@ const List_Users = ({ username }) => {
   )
 }
 export const Dashboard = () => {
-  const [a, setA] = useState(false)
+
   const [showUserOptions, setShowUserOptions] = useState(false)
   const [showAdminOptions, setShowAdminOptions] = useState(false)
   const [show, setShow] = useState({
@@ -40,12 +40,6 @@ export const Dashboard = () => {
   }
 
 
-  const openoffices = () => {
-    setOpenOffices(!openOffices);
-    setShowEditIcon(false);
-    setShowEdit(false);
-    setA(false)
-  };
   const openAreas = () => {
     setAreas(true);
     setPasswordConf(false);
@@ -69,20 +63,9 @@ export const Dashboard = () => {
   }
   const handleCloseUserOptions = () => setShowUserOptions(false)
   const handleCloseAdminOptions = () => setShowAdminOptions(false)
-  const closedOptions = () => {
 
-  }
-
-  const showItens = () => {
-
-  };
-  const showEdits = () => {
-  };
-  const showSearch = () => {
-  };
   const closedShow = () => {
   };
-
 
   return (
     <>
@@ -189,7 +172,7 @@ export const Dashboard = () => {
               {open.listUsers &&
                 <div
                   className="listUser-users">
-                  {users.map((item => (
+                  {users?.map((item => (
                     <List_Users key={item.name} {...item} />
                   )))}
                 </div>
