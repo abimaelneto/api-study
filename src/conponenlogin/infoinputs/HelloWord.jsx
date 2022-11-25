@@ -17,42 +17,40 @@ export const HelloWorld = () => {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const navegate = useNavigate()
-  const [erro, setErro] = useState(false)
+  // const [erro, setErro] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const show = () => setShowPassword(!showPassword)
 
   const handleSubmit = () => {
-    if (!password && email) {
-      setErroDinamic('O campo password não está preenhido!')
-      setErro(!erro)
-      setTimeout(() => {
-        setErro(false)
-      }, "3000")
-    } else if (!email && password) {
-      setErroDinamic('O campo email não está preenhido!')
-      setErro(!erro)
-      setTimeout(() => {
-        setErro(false)
-      }, "3000")
-    } else if (!password || !email) {
-      setErroDinamic('Nenhum dos campos foi preenchido!')
-      setErro(!erro)
-      setTimeout(() => {
-        setErro(false)
-      }, "3000")
-    } else if (password || email) {
+
+    let newMessage = 'ERRO:\n'
+
+    if(password && email) {
       if (password == docs.passwordDocs
-        || email == docs.emailDocs
+        && email == docs.emailDocs
       ) {
         navegate('/dashboard')
-      } else {
-        setErroDinamic('Seus dados passados nos campos não são reconhecidos!')
-        setErro(!erro)
-        setTimeout(() => {
-          setErro(false)
-        }, "3000")
+        setErroDinamic('')
+        return
       }
+      newMessage += 'Seus dados passados nos campos não são reconhecidos!'
     }
+    
+    if (!password) {
+      newMessage += ' O campo password não está preenhido!'
+    }
+
+    if (!email) {
+      newMessage += ' O campo email não está preenhido!'
+    }
+
+    setErroDinamic(newMessage)
+
+    setTimeout(() => {
+      setErroDinamic('')
+    }, "3000")
+
+
   }
   const handleEmail = (e) => {
     const newEmail = e.target.value
@@ -93,7 +91,7 @@ export const HelloWorld = () => {
           <Button variant="outlined" text="Cadastrar" />
         </Link>
       </div>
-      <Dialog open={erro}>
+      <Dialog open={showErroDinamic}>
         <DialogContent>
           <Stack >
             <div className="erro" style={{ color: 'red' }}>{showErroDinamic}</div>
