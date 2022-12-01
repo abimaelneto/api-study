@@ -86,7 +86,7 @@ export const HelloWorld = () => {
         }
       />
       <div className="mybotton">
-        <Button onClick={handleSubmit} fullWidth={true} variant="contained" text="Logar-se" />
+        <Button type="submit" onClick={handleSubmit} fullWidth={true} variant="contained" text="Logar-se" />
         <Link to="/cadastroUser">
           <Button variant="outlined" text="Cadastrar" />
         </Link>

@@ -1,7 +1,7 @@
 import './index.css'
 import { Button, Input as MuiInput } from '@mui/material'
 import { Stack } from '@mui/system'
-export const Input = ({ title, tipo, fundo, value, name, onChange }) => {
+export const Input = ({ title, tipo, fundo, value, name, onChange, ...props }) => {
     return (
         <Stack className="left_stack">
             <span>{title}</span>
@@ -13,6 +13,7 @@ export const Input = ({ title, tipo, fundo, value, name, onChange }) => {
                 onChange={onChange}
                 value={value}
                 name={name}
+                {...props}
             >
             </MuiInput>
         </Stack>
