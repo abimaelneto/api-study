@@ -159,7 +159,7 @@ export const Dashboard = () => {
                   About the project
                 </div>
               </Stack>
-              {a && <h2>Em repouso...</h2>}
+         
               {open.listSearch &&
                 <div
                   className="listUser-resultSearch"
