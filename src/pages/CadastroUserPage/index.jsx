@@ -16,6 +16,7 @@ import "./index.css";
 import { InputesList } from "./INPUTS";
 
 export const CadastroUser = () => {
+
   const [showErroDinamic, setShowErroDinamic] = useState(false);
   const [data, setData] = useState({
     username: "",
@@ -36,12 +37,19 @@ export const CadastroUser = () => {
 
   const validation = {
     username: (value) => value.length < 6,
+    birth: (value) => !value.includes('/'),
+    phone: (value) => value.length < 8,
     email: (value) => !value.includes("@"),
+    password: (value) => !value >= 8 || !value == data.passwordConfirmation,
+    passwordConfirmation: (value) => !value == data.password
   };
 
   const errorMessages = {
-    email: "Por favor, insira um email válido!",
-    username: "A senha deve ter no mínimo 6 caracteres",
+    username: "O nome do usuario deve ter no mínimo 6 caracteres",
+    birth: 'A data deve conter / data,mês e o ano',
+    email: "Por favor, o email deve conter '@' e '.com', insira um email válido!",
+    password: 'A senha deve ser maior ou iqual caracteres!',
+    passwordConfirmation: 'Esta deve conferir com a sua senha'
   };
 
   const handleChange = (e) => {
@@ -52,12 +60,10 @@ export const CadastroUser = () => {
     });
 
     setError((old) => {
-      //validation['email']('temotio@email.com') => true
-      //validation['email']('temotio.com') => false
-
       return {
         ...old,
         [name]: validation[name](value) ? errorMessages[name] : null,
+
       };
     });
   };
@@ -74,49 +80,13 @@ export const CadastroUser = () => {
     e.preventDefault();
     let newMessage = "ERRO:\n";
 
-    if (Object.values(error).find((item) => item != null)) {
-      alert("formulário inválido");
-      return;
+    if((Object.keys(validation))) {
+
     }
-    alert("formulário submetido");
-    return;
-    // if (
-    //   data.email.includes("@")
-    //   // && data.email.toString().includes('.') == 1
-    //   // data.email < 6
-    // ) {
-    //   newMessage = "passou";
-    //   setShowErroDinamic(newMessage);
-    // } else {
-    //   newMessage = "nao passa";
-    //   setShowErroDinamic(newMessage);
-    // }
-
-    // if (
-    //     data.username.length ||
-    //     data.birth.length ||
-    //     data.phone.length ||
-    //     data.email.length ||
-    //     data.password.length ||
-    //     data.passwordConfirmation.length
-    //     <= 6
-    // ) {
-    //     if (data.email.includes(
-    //         '@' == 1 ||
-    //         'gmail.com'
-    //     )) {
-    //         newMessage = `certo`
-    //         setShowErroDinamic(newMessage)
-    //     }
-    // } else {
-    //     newMessage = 'Verifique se todos os campos tem caratereres maior que 5'
-    //     setShowErroDinamic(newMessage)
-    // }
-
-    // setShowErroDinamic(newMessage);
-    // setTimeout(() => {
-    //   setShowErroDinamic("");
-    // }, "3000");
+    setShowErroDinamic(newMessage);
+    setTimeout(() => {
+      setShowErroDinamic("");
+    }, "3000");
   };
 
   return (
@@ -173,3 +143,10 @@ export const CadastroUser = () => {
     </>
   );
 };
+    // if (Object.values(error).find((item) => item != null)) {
+    //   newMessage = 'formulário inválido'
+    //   setShowErroDinamic(newMessage)
+    // } else {
+    //   newMessage = 'formulário válido'
+    //   setShowErroDinamic(newMessage)
+    // }
