@@ -36,6 +36,7 @@ export const InputesList = ({ data, error, handleChange, match }) => {
           name="birth"
           value={data?.birth}
           onChange={handleChange}
+          error={error.birth}
         />
         <BadgeIcon />
       </div>
@@ -47,6 +48,7 @@ export const InputesList = ({ data, error, handleChange, match }) => {
           name="phone"
           value={data?.phone}
           onChange={handleChange}
+          error={error.phone}
         />
         <ContactPhoneIcon />
       </div>
@@ -54,12 +56,11 @@ export const InputesList = ({ data, error, handleChange, match }) => {
       <div className="conponent_too">
         <Input
           title="E_mail"
-          //   tipo="email"
           fundo="Digita seu E_mail"
           name="email"
           value={data?.email}
           onChange={handleChange}
-          error={error?.email}
+          error={error.email}
         />
         <MailIcon />
       </div>
@@ -71,7 +72,7 @@ export const InputesList = ({ data, error, handleChange, match }) => {
           name="password"
           value={data?.password}
           onChange={handleChange}
-          error={error?.password}
+          error={error.password}
         />
 
         {icon ? (
@@ -88,6 +89,7 @@ export const InputesList = ({ data, error, handleChange, match }) => {
           name="passwordConfirmation"
           value={data?.passwordConfirmation}
           onChange={handleChange}
+          error={error.passwordConfirmation}
         />
 
         {icon ? (
