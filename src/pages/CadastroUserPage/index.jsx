@@ -16,7 +16,6 @@ import "./index.css";
 import { InputesList } from "./INPUTS";
 
 export const CadastroUser = () => {
-
   const [showErroDinamic, setShowErroDinamic] = useState(false);
   const [data, setData] = useState({
     username: "",
@@ -36,20 +35,21 @@ export const CadastroUser = () => {
   });
 
   const validation = {
-    username: (value) => value.length < 6,
-    birth: (value) => !value.includes('/'),
-    phone: (value) => value.length < 8,
-    email: (value) => !value.includes("@"),
-    password: (value) => !value >= 8 || !value == data.passwordConfirmation,
-    passwordConfirmation: (value) => !value == data.password
+    username: (value) => value.length >= 6,
+    birth: (value) => value.includes("/"),
+    phone: (value) => value.length > 8,
+    email: (value) => value.includes("@") && value.includes(".com"),
+    password: (value) => value.length >= 8,
+    passwordConfirmation: (value) => value.length >= 8,
   };
 
   const errorMessages = {
     username: "O nome do usuario deve ter no mínimo 6 caracteres",
-    birth: 'A data deve conter / data,mês e o ano',
-    email: "Por favor, o email deve conter '@' e '.com', insira um email válido!",
-    password: 'A senha deve ser maior ou iqual caracteres!',
-    passwordConfirmation: 'Esta deve conferir com a sua senha'
+    birth: "A data deve conter / data,mês e o ano",
+    email:
+      "Por favor, o email deve conter '@' e '.com', insira um email válido!",
+    password: "A senha deve ser maior que 8 caracteres",
+    passwordConfirmation: "Esta deve conferir com a sua senha",
   };
 
   const handleChange = (e) => {
@@ -62,13 +62,14 @@ export const CadastroUser = () => {
     setError((old) => {
       return {
         ...old,
-        [name]: validation[name](value) ? errorMessages[name] : null,
-
+        [name]: !validation[name](value) ? errorMessages[name] : null,
       };
     });
   };
 
   const match = data?.password === data?.passwordConfirmation;
+
+  const hasErrors = Object.values(error).find((item) => item != null);
 
   const [aceitouTermos, setAceitouTermos] = useState(false);
 
@@ -80,8 +81,7 @@ export const CadastroUser = () => {
     e.preventDefault();
     let newMessage = "ERRO:\n";
 
-    if((Object.keys(validation))) {
-
+    if (Object.keys(validation)) {
     }
     setShowErroDinamic(newMessage);
     setTimeout(() => {
@@ -117,7 +117,7 @@ export const CadastroUser = () => {
                     fullWidth={true}
                     variant="contained"
                     color="primary"
-                    disabled={!aceitouTermos || !match}
+                    disabled={!aceitouTermos || !match || hasErrors}
                   >
                     Cadastrar
                   </Button>
@@ -143,10 +143,10 @@ export const CadastroUser = () => {
     </>
   );
 };
-    // if (Object.values(error).find((item) => item != null)) {
-    //   newMessage = 'formulário inválido'
-    //   setShowErroDinamic(newMessage)
-    // } else {
-    //   newMessage = 'formulário válido'
-    //   setShowErroDinamic(newMessage)
-    // }
+// if (Object.values(error).find((item) => item != null)) {
+//   newMessage = 'formulário inválido'
+//   setShowErroDinamic(newMessage)
+// } else {
+//   newMessage = 'formulário válido'
+//   setShowErroDinamic(newMessage)
+// }
