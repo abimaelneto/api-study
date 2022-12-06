@@ -26,7 +26,7 @@ export const Input = ({
         {...props}
         helperText={error}
       ></MuiInput>
-      {/* {error && <Typography>{error}</Typography>} */}
+     
     </Stack>
   );
 };
