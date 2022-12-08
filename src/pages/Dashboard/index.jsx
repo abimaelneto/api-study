@@ -3,16 +3,11 @@ import { Header } from "./Header";
 import SearchIcon from "@mui/icons-material/Search";
 import CreateIcon from "@mui/icons-material/Create";
 import CheckIcon from "@mui/icons-material/Check";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SidebarItem } from "./SidebarItem";
 import { Button, Dialog, DialogActions, DialogContent, Stack } from "@mui/material";
-import { users } from "../../mocks/users";
+import Api from "../../Api";
 
-const List_Users = ({ username }) => {
-  return (
-    <Stack className="users">{username}</Stack>
-  )
-}
 export const Dashboard = () => {
 
   const [showUserOptions, setShowUserOptions] = useState(false)
@@ -63,7 +58,30 @@ export const Dashboard = () => {
   }
   const handleCloseUserOptions = () => setShowUserOptions(false)
   const handleCloseAdminOptions = () => setShowAdminOptions(false)
-
+  const [searchUsers, setSearchUsers] = useState('')
+  const [pessoas, setPessoas] = useState(null)
+  const [resultados, setResultados] = useState([])
+  const [selectedResult, setSelectedResult] = useState({})
+  const handleSearchResult = (e) => {
+    const newSearchResult = e.target.value;
+    setSearchUsers(newSearchResult)
+    const novosResultados = pessoas.filter(item => item.nome.toLowerCase().includes(newSearchResult.toLowerCase()))
+    setResultados(novosResultados)
+    //se encontrou ao menos 1 resultado, seleciona o primeiro para ser mostrado
+    if (novosResultados.length > 0) {
+      setSelectedResult(novosResultados[0])
+    }
+  }
+  const handleSelectResult = (index) => {
+    setSelectedResult(resultados[index])
+  }
+  const getPessoas = async () => {
+    const res = await Api.getPessoas()
+    setPessoas(res)
+  }
+  useEffect(() => {
+    getPessoas()
+  }, [])
   const closedShow = () => {
   };
 
@@ -76,18 +94,15 @@ export const Dashboard = () => {
             <div className="inputSearchAndIcon">
               <input
                 placeholder="Search users"
-                type="text"
-                onChange={''}
-                value=''
+                type="searc"
+                onChange={handleSearchResult}
+                value={searchUsers}
               />
               <SearchIcon />
             </div>
           )}
           <div onClick={closedShow} className="infoUser">
             <div className="info">
-
-
-
               <h3>
                 Info User
                 <CreateIcon onClick={() => setShowUserOptions(true)} className="edit-user" />
@@ -104,32 +119,37 @@ export const Dashboard = () => {
               )}
               <div className="info-itens">
                 {areas && (
-                  <>
+
+                  resultados.length > 0 &&
+                  <Stack>
                     <SidebarItem
                       title="User Name"
-                      content="Agente da Empresa"
+                      content={selectedResult?.nome}
                     />
 
                     <SidebarItem
                       title="E-mail"
-                      content="temotio.bernardo@snowmanlabs.com"
+                      content={selectedResult?.email}
                     />
                     <SidebarItem
                       title="Telephone"
-                      content="+55 41 99761-0111"
+                      content={selectedResult?.celphone}
                     />
-                    <SidebarItem title="Birth date" content="02/10/2000" />
+                    <SidebarItem
+                      title="Birth date"
+                      content={selectedResult?.birthDate}
+                    />
                     <SidebarItem
                       title="Registration Date"
-                      content="23 de Agosto de 2021"
+                      content={selectedResult?.registrationDate}
                     />
-                    <SidebarItem title="Management level" content="Admin" />
-                    <SidebarItem title="Password" content="*********" />
                     <SidebarItem
-                      title="Password confirmation"
-                      content="*********"
+                      title="Management level"
+                      content={selectedResult?.managementLevel}
                     />
-                  </>
+
+                  </Stack>
+
                 )}
                 {passwordConf && (
                   <input
@@ -159,22 +179,24 @@ export const Dashboard = () => {
                   About the project
                 </div>
               </Stack>
-         
+
               {open.listSearch &&
                 <div
                   className="listUser-resultSearch"
                 >
-                  {users?.map((item => (
-                    <List_Users key={item.name} {...item} />
-                  )))}
+                  {resultados && resultados.map((resultado, index) =>
+                  (
+                    <div className='users' onClick={() => handleSelectResult(index)}>
+                      <h2 className="users">{resultado.nome}</h2>
+                    </div>
+                  )
+                  )}
                 </div>
               }
               {open.listUsers &&
                 <div
                   className="listUser-users">
-                  {users?.map((item => (
-                    <List_Users key={item.name} {...item} />
-                  )))}
+                 
                 </div>
               }
               {open.listMore &&
@@ -192,8 +214,6 @@ export const Dashboard = () => {
           <SearchIcon />
         </p>
       </div>
-
-
       <Dialog open={showUserOptions} onClose={handleCloseUserOptions} >
         <DialogContent>
           <Stack sx={{ width: '100%' }} >
@@ -209,7 +229,6 @@ export const Dashboard = () => {
           <Button onClick={handleCloseUserOptions}>Voltar</Button>
         </DialogActions>
       </Dialog>
-
       <Dialog open={showAdminOptions} onClose={handleCloseAdminOptions}>
         <DialogContent>
           <Stack >
@@ -218,7 +237,6 @@ export const Dashboard = () => {
           </Stack>
         </DialogContent>
       </Dialog>
-
     </>
   );
 };
