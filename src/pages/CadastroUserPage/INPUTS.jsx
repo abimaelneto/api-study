@@ -4,7 +4,6 @@ import MailIcon from "@mui/icons-material/Mail";
 import BadgeIcon from "@mui/icons-material/Badge";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import { useState } from "react";
-import { MudarInput } from "./inputTipo";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Typography } from "@mui/material";
