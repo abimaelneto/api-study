@@ -11,11 +11,12 @@ import {
   Stack,
 } from "@mui/material";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./index.css";
 import { InputesList } from "./INPUTS";
 
 export const CadastroUser = () => {
+  const navegate = useNavigate()
   const [showErroDinamic, setShowErroDinamic] = useState(false);
   const [data, setData] = useState({
     username: "",
@@ -26,12 +27,12 @@ export const CadastroUser = () => {
     passwordConfirmation: "",
   });
   const [error, setError] = useState({
-    username: null,
-    birth: null,
-    phone: null,
-    email: null,
-    password: null,
-    passwordConfirmation: null,
+    username: true,
+    birth: true,
+    phone: true,
+    email: true,
+    password: true,
+    passwordConfirmation: true,
   });
 
   const validation = {
@@ -50,6 +51,7 @@ export const CadastroUser = () => {
       "Por favor, o email deve conter '@' e '.com', insira um email válido!",
     password: "A senha deve ser maior que 8 caracteres",
     passwordConfirmation: "Esta deve conferir com a sua senha",
+    formNoComplet: 'Cadastrou com sucesso :), faça o seu login!'
   };
 
   const handleChange = (e) => {
@@ -68,9 +70,7 @@ export const CadastroUser = () => {
   };
 
   const match = data?.password === data?.passwordConfirmation;
-
   const hasErrors = Object.values(error).find((item) => item != null);
-
   const [aceitouTermos, setAceitouTermos] = useState(false);
 
   const handleTermos = () => {
@@ -79,14 +79,22 @@ export const CadastroUser = () => {
 
   const handleCadastrar = (e) => {
     e.preventDefault();
+    const ddd = {
+      Tim: 41,
+      Oi: 43,
+      Claro: 45
+    }
     let newMessage = "ERRO:\n";
 
-    if (Object.keys(validation)) {
-    }
-    setShowErroDinamic(newMessage);
+
+    setShowErroDinamic(`${errorMessages.formNoComplet}`)
+
+
     setTimeout(() => {
+      navegate('/login')
       setShowErroDinamic("");
-    }, "3000");
+      setShowErroDinamic(newMessage);
+    }, "5000");
   };
 
   return (
@@ -130,10 +138,13 @@ export const CadastroUser = () => {
             <Dialog open={showErroDinamic}>
               <DialogContent>
                 <Stack>
-                  <div className="erro" style={{ color: "red" }}>
-                    {showErroDinamic}
-                  </div>
-                  <div style={{ color: "red" }}>Por favor preencha</div>
+                  <div style={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}><div class="loader"></div></div>
+                  <div style={{ color: "red" }}>{showErroDinamic}</div>
                 </Stack>
               </DialogContent>
             </Dialog>
