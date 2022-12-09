@@ -5,25 +5,25 @@ import CreateIcon from "@mui/icons-material/Create";
 import CheckIcon from "@mui/icons-material/Check";
 import { useEffect, useState } from "react";
 import { SidebarItem } from "./SidebarItem";
-import { Button, Dialog, DialogActions, DialogContent, Stack } from "@mui/material";
+import { Dialog, DialogContent, Stack, Typography } from "@mui/material";
 import Api from "../../Api";
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+
 
 export const Dashboard = () => {
-
-  const [showUserOptions, setShowUserOptions] = useState(false)
-  const [showAdminOptions, setShowAdminOptions] = useState(false)
-  const [show, setShow] = useState({
-    iconSearch: false,
-  })
-  const [open, setOpen] = useState({
-    offices: false,
-    listSearch: true,
-    listUsers: false,
-    listMore: false
-  })
-
+  const [confPasseordDelete, setConfPaswordDelete] = useState('')
+  const [searchUsers, setSearchUsers] = useState('')
+  const [pessoas, setPessoas] = useState(null)
+  const [resultados, setResultados] = useState([])
+  const [selectedResult, setSelectedResult] = useState({})
   const [passwordConf, setPasswordConf] = useState(false);
   const [areas, setAreas] = useState(true);
+  const [showUserOptions, setShowUserOptions] = useState(true)
+  const [showAdminOptions, setShowAdminOptions] = useState(false)
+  const [showSenha, setShowSenha] = useState(true)
+  const handleCloseUserOptions = () => setShowUserOptions(false)
+  const handleCloseAdminOptions = () => setShowAdminOptions(false)
+  const mudaFormatoSenha = () => { setShowSenha(!showSenha) }
 
   const handleOpen = (property) => {
     let meuNovoObjeto = {}
@@ -33,6 +33,14 @@ export const Dashboard = () => {
     meuNovoObjeto[property] = true
     setOpen(meuNovoObjeto)
   }
+  const [openInputs, setSpenInputs] = useState(false)
+  const openInput = () => { setSpenInputs(!openInputs) }
+  const [open, setOpen] = useState({
+    offices: false,
+    listSearch: true,
+    listUsers: false,
+    listMore: false
+  })
 
 
   const openAreas = () => {
@@ -52,25 +60,28 @@ export const Dashboard = () => {
     for (let chave of Object.keys(show)) {
       meuNovoObjeto[chave] = false
     }
-    console.log('novo', meuNovoObjeto)
     meuNovoObjeto[property] = true
     setShow(meuNovoObjeto)
   }
-  const handleCloseUserOptions = () => setShowUserOptions(false)
-  const handleCloseAdminOptions = () => setShowAdminOptions(false)
-  const [searchUsers, setSearchUsers] = useState('')
-  const [pessoas, setPessoas] = useState(null)
-  const [resultados, setResultados] = useState([])
-  const [selectedResult, setSelectedResult] = useState({})
+
   const handleSearchResult = (e) => {
     const newSearchResult = e.target.value;
     setSearchUsers(newSearchResult)
-    const novosResultados = pessoas.filter(item => item.nome.toLowerCase().includes(newSearchResult.toLowerCase()))
+    const novosResultados = pessoas.filter(
+      item => item?.username?.toLowerCase().includes(
+        newSearchResult?.toLowerCase()
+      )
+    )
+
     setResultados(novosResultados)
-    //se encontrou ao menos 1 resultado, seleciona o primeiro para ser mostrado
+    //se encontrou ao menos 1 resultado, seleciona o primeiro para ser mostrado//
     if (novosResultados.length > 0) {
       setSelectedResult(novosResultados[0])
     }
+  }
+  const handleConfPassword = (e) => {
+    const newPassword = e.target.value;
+    setConfPaswordDelete(newPassword)
   }
   const handleSelectResult = (index) => {
     setSelectedResult(resultados[index])
@@ -84,13 +95,23 @@ export const Dashboard = () => {
   }, [])
   const closedShow = () => {
   };
+  const deleteUser = (user) => {
+    setPasswordConf(false)
 
+    const deletando = pessoas.filter(item => item.passwordConfirmation.toLowerCase().includes(confPasseordDelete.toLowerCase()))
+    if (deletando) {
+      alert(`Deseja realmente apagar este usuario? ${selectedResult?.email == confPasseordDelete}`)
+    } else {
+      alert('Usuario não encontrado, a senha não confere!')
+    }
+    setAreas(true)
+  }
   return (
     <>
       <div className="containerUserLoged">
         <Header />
         <div className="mini-container">
-          {show.iconSearch && (
+          {openInputs && (
             <div className="inputSearchAndIcon">
               <input
                 placeholder="Search users"
@@ -105,58 +126,105 @@ export const Dashboard = () => {
             <div className="info">
               <h3>
                 Info User
-                <CreateIcon onClick={() => setShowUserOptions(true)} className="edit-user" />
+                <div onClick={openInput} className="search">
+                  <SearchIcon />
+                </div >
               </h3>
 
               {passwordConf && (
-                <h3 className="confirmation-title">
-                  Confirmation Password
-                  <CheckIcon
-                    onClick={openAreas}
-                    className="checkConfirmation"
-                  />
-                </h3>
+                <>
+                  <h3 className="confirmation-title">
+                    Confirmation Password
+                    <CheckIcon
+                      onClick={deleteUser}
+                      className="checkConfirmation"
+                    />
+                  </h3>
+                  <Stack style={{
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    justifyContent: 'center',
+                    width: '100%',
+                    heitgh: '3rem',
+                    background: 'black',
+                    color: 'white'
+                  }}>
+                    <input
+                      style={{
+                        marginRight: '3rem',
+                        width: '80%',
+                        heitgh: '100%',
+                        color: 'white'
+                      }}
+                      placeholder="Enter confirmation password"
+                      type={showSenha ? 'text' : 'password'}
+                      value={confPasseordDelete}
+                      onChange={handleConfPassword}
+                    ></input>
+                    <div style={{
+                      position: 'absolute',
+                      marginTop: '5px',
+                      width: '2rem',
+                      color: 'white'
+                    }} >{showSenha ? <Visibility
+                      onClick={mudaFormatoSenha}
+                    /> :
+                      <VisibilityOff
+                        onClick={mudaFormatoSenha}
+                      />}
+                    </div>
+                  </Stack>
+                </>
+
               )}
               <div className="info-itens">
                 {areas && (
 
                   resultados.length > 0 &&
-                  <Stack>
-                    <SidebarItem
-                      title="User Name"
-                      content={selectedResult?.nome}
-                    />
+                  <>
+                    <Stack>
+                      <SidebarItem
+                        title="User Name"
+                        content={selectedResult?.username}
+                      />
 
-                    <SidebarItem
-                      title="E-mail"
-                      content={selectedResult?.email}
-                    />
-                    <SidebarItem
-                      title="Telephone"
-                      content={selectedResult?.celphone}
-                    />
-                    <SidebarItem
-                      title="Birth date"
-                      content={selectedResult?.birthDate}
-                    />
-                    <SidebarItem
-                      title="Registration Date"
-                      content={selectedResult?.registrationDate}
-                    />
-                    <SidebarItem
-                      title="Management level"
-                      content={selectedResult?.managementLevel}
-                    />
+                      <SidebarItem
+                        title="E-mail"
+                        content={selectedResult?.email}
+                      />
+                      <SidebarItem
+                        title="Telephone"
+                        content={selectedResult?.celphone}
+                      />
+                      <SidebarItem
+                        title="Birth date"
+                        content={selectedResult?.birthDate}
+                      />
+                      <SidebarItem
+                        title="Registration Date"
+                        content={selectedResult?.registrationDate}
+                      />
+                      <SidebarItem
+                        title="Management level"
+                        content={selectedResult?.managementLevel}
+                      />
 
-                  </Stack>
+                    </Stack>
+                    <>
+                      <div className="edit-user">
 
+                        <div onClick={() => {
+                          handleOpen('offices')
+                          handleCloseUserOptions()
+                          setShowAdminOptions(true)
+                        }}>Level Up</div>
+                        <div onClick={passwordConfs}>Deletar</div>
+                      </div>
+
+                    </>
+                  </>
                 )}
-                {passwordConf && (
-                  <input
-                    placeholder="Enter confirmation password"
-                    type="search"
-                  ></input>
-                )}
+
               </div>
             </div>
             <div className="listUsers">
@@ -187,7 +255,7 @@ export const Dashboard = () => {
                   {resultados && resultados.map((resultado, index) =>
                   (
                     <div className='users' onClick={() => handleSelectResult(index)}>
-                      <h2 className="users">{resultado.nome}</h2>
+                      <h2 className="users">{resultado.username}</h2>
                     </div>
                   )
                   )}
@@ -196,7 +264,11 @@ export const Dashboard = () => {
               {open.listUsers &&
                 <div
                   className="listUser-users">
-                 
+                  {
+                    pessoas.map(pessoa => {
+                      return <h2 className="users">{pessoa?.username}</h2>
+                    })
+                  }
                 </div>
               }
               {open.listMore &&
@@ -208,32 +280,14 @@ export const Dashboard = () => {
             </div>
           </div>
         </div>
-        <p onClick={() => {
-          handleShow('iconSearch')
-        }} className="search">
-          <SearchIcon />
-        </p>
+
       </div>
-      <Dialog open={showUserOptions} onClose={handleCloseUserOptions} >
-        <DialogContent>
-          <Stack sx={{ width: '100%' }} >
-            <div onClick={() => {
-              handleOpen('offices')
-              handleCloseUserOptions()
-              setShowAdminOptions(true)
-            }}>Level Up</div>
-            <div onClick={passwordConfs}>Delete User</div>
-          </Stack>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseUserOptions}>Voltar</Button>
-        </DialogActions>
-      </Dialog>
+
       <Dialog open={showAdminOptions} onClose={handleCloseAdminOptions}>
         <DialogContent>
           <Stack >
-            <div onClick={() => handleShow('editIcon')}>Add as assistant/Admin</div>
-            <div onClick={() => handleShow('editIcon')}>Add as admin</div>
+            <div className="option" onClick={() => handleShow('editIcon')}>Add as assistant/Admin</div>
+            <div className="option" onClick={() => handleShow('editIcon')}>Add as admin</div>
           </Stack>
         </DialogContent>
       </Dialog>
