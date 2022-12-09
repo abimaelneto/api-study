@@ -3,11 +3,8 @@ import {
   ThemeProvider as MuiThemeProvider,
   useMediaQuery,
 } from "@mui/material";
-
 import { createTheme } from "@mui/material/styles";
-
 export const ThemeContext = createContext();
-
 export const ThemeProvider = ({ children }) => {
   const [useDarkMode, setUseDarkMode] = useState(false);
 

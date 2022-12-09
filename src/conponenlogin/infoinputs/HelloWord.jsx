@@ -5,9 +5,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import { Button } from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { InputConponentLogin } from "./Inpunts";
-import { Dialog, DialogActions, DialogContent, Stack } from "@mui/material";
-
-
+import { Dialog, DialogContent, Stack } from "@mui/material";
 export const HelloWorld = () => {
   const docs = {
     emailDocs: "oitomitluis32@gmail.com",
@@ -17,15 +15,19 @@ export const HelloWorld = () => {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const navegate = useNavigate()
-  // const [erro, setErro] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const show = () => setShowPassword(!showPassword)
-
+  const [error, setError] = useState({
+    email: null,
+    password: null
+  })
+  const vericications = {
+    verificationEmail: email.length > 6 && email.includes(".com"),
+    verificationPassword: password.length > 8
+  }
   const handleSubmit = () => {
-
     let newMessage = 'ERRO:\n'
-
-    if(password && email) {
+    if (password && email) {
       if (password == docs.passwordDocs
         && email == docs.emailDocs
       ) {
@@ -35,22 +37,16 @@ export const HelloWorld = () => {
       }
       newMessage += 'Seus dados passados nos campos não são reconhecidos!'
     }
-    
     if (!password) {
       newMessage += ' O campo password não está preenhido!'
     }
-
     if (!email) {
       newMessage += ' O campo email não está preenhido!'
     }
-
     setErroDinamic(newMessage)
-
     setTimeout(() => {
       setErroDinamic('')
     }, "3000")
-
-
   }
   const handleEmail = (e) => {
     const newEmail = e.target.value
@@ -86,7 +82,17 @@ export const HelloWorld = () => {
         }
       />
       <div className="mybotton">
-        <Button onClick={handleSubmit} fullWidth={true} variant="contained" text="Logar-se" />
+        <Button
+          onClick={handleSubmit}
+          fullWidth={true}
+          variant="contained"
+          text="Logar-se"
+          disabled={
+            !vericications?.verificationEmail
+            ||
+            !vericications?.verificationPassword
+          }
+        />
         <Link to="/cadastroUser">
           <Button variant="outlined" text="Cadastrar" />
         </Link>
