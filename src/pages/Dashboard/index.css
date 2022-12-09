@@ -29,16 +29,15 @@
 }
 
 .search {
-  position: absolute;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  right: 3rem;
-  bottom: 3rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 10rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #fff;
 }
 
 .search:hover {
@@ -135,18 +134,40 @@ input::placeholder {
 }
 
 .edit-user {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  width: 98.5%;
+  height: 2rem;
   padding: 3px;
-  border-radius: 2rem;
   color: #008080;
-  background-color: #c0c0c0;
 }
-
-.edit-user:hover {
+.edit-user div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  height: 100%;
+  color: black;
+  background-color:#008080;
+}
+.edit-user div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  height: 100%;
+  color: black;
+  background-color: red;
+}
+.edit-user div:nth-child(1):hover,
+.edit-user div:nth-child(2):hover {
   padding: 4px;
   color: #c0c0c0;
-  background-color: #800000;
   transition: 0.9s;
   cursor: pointer;
+  filter: contrast(2);
 }
 
 .more-info-user {
@@ -389,6 +410,13 @@ span:hover {
   color: green;
 }
 
+.option:hover {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
 @keyframes show {
   0% {
     height: 10px;
@@ -462,10 +490,12 @@ span:hover {
     transition: 0.9s;
     background-color: black;
   }
+
   .logoListUsers div:hover {
     transition: 0.9s;
     background-color: #008080;
   }
+
   .listUser-resultSearch {
     display: flex;
     font-display: auto;
