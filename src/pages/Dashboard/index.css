@@ -142,7 +142,10 @@ input::placeholder {
   height: 2rem;
   padding: 3px;
   color: #008080;
+
 }
+
+.edit-user a, 
 .edit-user div:nth-child(1) {
   display: flex;
   align-items: center;
@@ -151,6 +154,7 @@ input::placeholder {
   height: 100%;
   color: black;
   background-color:#008080;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .edit-user div:nth-child(2) {
   display: flex;
@@ -169,7 +173,13 @@ input::placeholder {
   cursor: pointer;
   filter: contrast(2);
 }
-
+.edit-user a:hover {
+  padding: 4px;
+  color: #c0c0c0;
+  transition: 0.9s;
+  cursor: pointer;
+  filter: contrast(2);
+}
 .more-info-user {
   position: absolute;
   display: flex;
@@ -398,6 +408,7 @@ span:hover {
   font-size: 16px;
   border-bottom: 0.1px solid rgb(255, 248, 248);
 }
+
 
 .users:hover {
   display: flex;
