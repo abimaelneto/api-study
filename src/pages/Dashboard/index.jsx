@@ -1,30 +1,27 @@
 import "./index.css";
 import { Header } from "./Header";
 import SearchIcon from "@mui/icons-material/Search";
-import CreateIcon from "@mui/icons-material/Create";
-import CheckIcon from "@mui/icons-material/Check";
+
+
 import { useEffect, useState } from "react";
 import { SidebarItem } from "./SidebarItem";
-import { Dialog, DialogContent, Stack, Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 import Api from "../../Api";
 import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { Link } from "react-router-dom";
 
 
 export const Dashboard = () => {
-  const [confPasseordDelete, setConfPaswordDelete] = useState('')
+
   const [searchUsers, setSearchUsers] = useState('')
   const [pessoas, setPessoas] = useState(null)
   const [resultados, setResultados] = useState([])
   const [selectedResult, setSelectedResult] = useState({})
   const [passwordConf, setPasswordConf] = useState(false);
   const [areas, setAreas] = useState(true);
-  const [showUserOptions, setShowUserOptions] = useState(true)
-  const [showAdminOptions, setShowAdminOptions] = useState(false)
-  const [showSenha, setShowSenha] = useState(true)
-  const handleCloseUserOptions = () => setShowUserOptions(false)
-  const handleCloseAdminOptions = () => setShowAdminOptions(false)
-  const mudaFormatoSenha = () => { setShowSenha(!showSenha) }
 
+  
+  
   const handleOpen = (property) => {
     let meuNovoObjeto = {}
     for (let chave of Object.keys(open)) {
@@ -48,11 +45,7 @@ export const Dashboard = () => {
     setPasswordConf(false);
     setShowEditIcon(true);
   };
-  const passwordConfs = () => {
-    setAreas(false);
-    setPasswordConf(!passwordConf);
-    setShowEdit(false);
-  };
+  
 
 
   const handleShow = (property) => {
@@ -79,10 +72,7 @@ export const Dashboard = () => {
       setSelectedResult(novosResultados[0])
     }
   }
-  const handleConfPassword = (e) => {
-    const newPassword = e.target.value;
-    setConfPaswordDelete(newPassword)
-  }
+  
   const handleSelectResult = (index) => {
     setSelectedResult(resultados[index])
   }
@@ -95,17 +85,7 @@ export const Dashboard = () => {
   }, [])
   const closedShow = () => {
   };
-  const deleteUser = (user) => {
-    setPasswordConf(false)
-
-    const deletando = pessoas.filter(item => item.passwordConfirmation.toLowerCase().includes(confPasseordDelete.toLowerCase()))
-    if (deletando) {
-      alert(`Deseja realmente apagar este usuario? ${selectedResult?.email == confPasseordDelete}`)
-    } else {
-      alert('Usuario não encontrado, a senha não confere!')
-    }
-    setAreas(true)
-  }
+  
   return (
     <>
       <div className="containerUserLoged">
@@ -131,52 +111,7 @@ export const Dashboard = () => {
                 </div >
               </h3>
 
-              {passwordConf && (
-                <>
-                  <h3 className="confirmation-title">
-                    Confirmation Password
-                    <CheckIcon
-                      onClick={deleteUser}
-                      className="checkConfirmation"
-                    />
-                  </h3>
-                  <Stack style={{
-                    display: 'flex',
-                    alignItems: 'flex-end',
-                    justifyContent: 'center',
-                    width: '100%',
-                    heitgh: '3rem',
-                    background: 'black',
-                    color: 'white'
-                  }}>
-                    <input
-                      style={{
-                        marginRight: '3rem',
-                        width: '80%',
-                        heitgh: '100%',
-                        color: 'white'
-                      }}
-                      placeholder="Enter confirmation password"
-                      type={showSenha ? 'text' : 'password'}
-                      value={confPasseordDelete}
-                      onChange={handleConfPassword}
-                    ></input>
-                    <div style={{
-                      position: 'absolute',
-                      marginTop: '5px',
-                      width: '2rem',
-                      color: 'white'
-                    }} >{showSenha ? <Visibility
-                      onClick={mudaFormatoSenha}
-                    /> :
-                      <VisibilityOff
-                        onClick={mudaFormatoSenha}
-                      />}
-                    </div>
-                  </Stack>
-                </>
-
-              )}
+              
               <div className="info-itens">
                 {areas && (
 
@@ -212,13 +147,9 @@ export const Dashboard = () => {
                     </Stack>
                     <>
                       <div className="edit-user">
-
-                        <div onClick={() => {
-                          handleOpen('offices')
-                          handleCloseUserOptions()
-                          setShowAdminOptions(true)
-                        }}>Level Up</div>
-                        <div onClick={passwordConfs}>Deletar</div>
+                        <Link to='/EditUser:/id'>
+                          <div>About</div>
+                        </Link>
                       </div>
 
                     </>
@@ -283,14 +214,7 @@ export const Dashboard = () => {
 
       </div>
 
-      <Dialog open={showAdminOptions} onClose={handleCloseAdminOptions}>
-        <DialogContent>
-          <Stack >
-            <div className="option" onClick={() => handleShow('editIcon')}>Add as assistant/Admin</div>
-            <div className="option" onClick={() => handleShow('editIcon')}>Add as admin</div>
-          </Stack>
-        </DialogContent>
-      </Dialog>
+      
     </>
   );
 };
