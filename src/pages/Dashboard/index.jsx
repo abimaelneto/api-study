@@ -1,27 +1,28 @@
 import "./index.css";
 import { Header } from "./Header";
 import SearchIcon from "@mui/icons-material/Search";
-
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import { useEffect, useState } from "react";
 import { SidebarItem } from "./SidebarItem";
-import { Stack } from "@mui/material";
+import { Card, Stack } from "@mui/material";
 import Api from "../../Api";
-import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Link } from "react-router-dom";
 
 
 export const Dashboard = () => {
+  const [modes, setModes] = useState({
+    default: true,
+    light: false,
+    dark: false
+  })
 
   const [searchUsers, setSearchUsers] = useState('')
   const [pessoas, setPessoas] = useState(null)
   const [resultados, setResultados] = useState([])
   const [selectedResult, setSelectedResult] = useState({})
-  const [passwordConf, setPasswordConf] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
   const [areas, setAreas] = useState(true);
-
-  
-  
   const handleOpen = (property) => {
     let meuNovoObjeto = {}
     for (let chave of Object.keys(open)) {
@@ -38,16 +39,11 @@ export const Dashboard = () => {
     listUsers: false,
     listMore: false
   })
-
-
   const openAreas = () => {
     setAreas(true);
     setPasswordConf(false);
     setShowEditIcon(true);
   };
-  
-
-
   const handleShow = (property) => {
     let meuNovoObjeto = {}
     for (let chave of Object.keys(show)) {
@@ -72,7 +68,7 @@ export const Dashboard = () => {
       setSelectedResult(novosResultados[0])
     }
   }
-  
+
   const handleSelectResult = (index) => {
     setSelectedResult(resultados[index])
   }
@@ -85,11 +81,19 @@ export const Dashboard = () => {
   }, [])
   const closedShow = () => {
   };
-  
+  const Options = () => {
+    setShowOptions(!showOptions)
+  }
+  const lightMode =()=> {
+
+  }
+  const darkMode =()=> {
+    
+  }
   return (
     <>
       <div className="containerUserLoged">
-        <Header />
+        <Header option={Options} />
         <div className="mini-container">
           {openInputs && (
             <div className="inputSearchAndIcon">
@@ -111,7 +115,7 @@ export const Dashboard = () => {
                 </div >
               </h3>
 
-              
+
               <div className="info-itens">
                 {areas && (
 
@@ -213,8 +217,22 @@ export const Dashboard = () => {
         </div>
 
       </div>
-
-      
+      {showOptions &&
+        <Card sx={{
+          position: 'absolute',
+          padding: '5px',
+          top: '4rem',
+          right: '1rem'
+        }}>
+          <div className="optionMode">Default mode</div>
+          <div className="optionMode" onClick={lightMode}>Light mode</div>
+          <div className="optionMode" onClick={darkMode}>Dark mode</div>
+          <br />
+          <div className="optionMode" style={{ color: 'red' }}>Sign out
+            <LogoutIcon fontSize="small" />
+          </div>
+        </Card>
+      }
     </>
   );
 };
