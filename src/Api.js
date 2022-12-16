@@ -1,6 +1,7 @@
 export default {
     getPessoas: () => [
         {
+            id: '1',
             username: 'Fulano de Tall Mario',
             email: 'fulanodetall32@gmail.com',
             celphone: 41997610666,
@@ -11,6 +12,7 @@ export default {
             passwordConfirmation: 'camotio32'
         },
         {
+            id: '2',
             username: 'Salvador',
             email: 'salvador@gmail.com',
             celphone: 43565867858,
@@ -21,6 +23,7 @@ export default {
             passwordConfirmation: '00000000'
         },
         {
+            id: '3',
             username: 'Agentes da Empresa TI',
             email: 'agentesti003@gmail.com',
             celphone: 41003,
@@ -31,6 +34,7 @@ export default {
             passwordConfirmation: '12345678'
         },
         {
+            id: '4',
             username: 'Emergência de Verdade',
             email: 'emergênciadeverdade@gmail.com',
             celphone: 155,
