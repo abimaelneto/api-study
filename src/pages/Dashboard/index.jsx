@@ -52,7 +52,7 @@ export const Dashboard = () => {
     meuNovoObjeto[property] = true
     setShow(meuNovoObjeto)
   }
-
+  console.log('selectR', selectedResult)
   const handleSearchResult = (e) => {
     const newSearchResult = e.target.value;
     setSearchUsers(newSearchResult)
@@ -84,11 +84,11 @@ export const Dashboard = () => {
   const Options = () => {
     setShowOptions(!showOptions)
   }
-  const lightMode =()=> {
+  const lightMode = () => {
 
   }
-  const darkMode =()=> {
-    
+  const darkMode = () => {
+
   }
   return (
     <>
@@ -151,7 +151,7 @@ export const Dashboard = () => {
                     </Stack>
                     <>
                       <div className="edit-user">
-                        <Link to='/EditUser:/id'>
+                        <Link to={`/EditUser/${selectedResult?.id}`}>
                           <div>About</div>
                         </Link>
                       </div>
