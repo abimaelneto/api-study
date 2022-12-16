@@ -15,7 +15,7 @@ function App() {
           <Route path="/cadastroUser" element={<CadastroUser />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/EditUser:/id" element={<EditUser />} />
+          <Route path="/EditUser/:id" element={<EditUser />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
